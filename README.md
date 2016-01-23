@@ -63,6 +63,7 @@ new directive or modify or extend an existing one and place it in the view.
 - Document Library View
 - Practice Areas Views
 - Search (integration with native FAST)
+
 ----------
 
 Set-up
@@ -147,7 +148,8 @@ Alternatively, you can create the "Workgroups" custom list.
   - People (Multiple lines of text)
   - StateName (Single line of text)
   - DisplayTitle (Single line of text)
- 
- 
+
+
+
  > **Note: Please note no spaces in the column names.
  
