@@ -1,0 +1,85 @@
+﻿
+<div id="modal">
+        <div class="modal-header">
+            <button type="button" class="laf-modal-close pull-right" ng-click="modal.cancel()"></button>
+            <h3 class="modal-title">Add Event</h3>
+        </div>
+        <div class="modal-body modal-dates">
+            <table class="table">
+                <tr>
+                    <td class="col-md-4"><label>Title: </label><span class="required">*</span></td>
+                    <td class="col-md-8"><input type="text" data-ng-model="event.title" data-ng-required="true"  ng-blur="msgTitle()" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td class="col-md-4"><label>Location: </label><span class="required"></span></td>
+                    <td class="col-md-8"><input type="text" data-ng-model="event.location" data-ng-required="false" class="form-control" /></td>
+                </tr>
+                                
+                <tr>
+                    <td class="col-md-4"><label>Start Date & Time: </label><span class="required">*</span></td>
+                    <td class="col-md-8">
+                        <div class="laf-dd-relative">
+                            <a class="dropdown-toggle" id="ddStartDateTime" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"  datepicker-popup="MMMM dd, yyyy h:mm a" date-disabled="disabled(date, mode)" data-ng-model="event.eventDate" data-ng-required="true" data-ng-blur="msgDate()">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="event.eventDate" data-datetimepicker-config="{ dropdownSelector: '#ddStartDateTime' }"/>
+                            </ul>
+                        </div>               
+                    </td>
+                </tr> 
+                
+                <tr>
+                    <td class="col-md-4"><label>End Date & Time: </label><span class="required">*</span></td>
+                    <td class="col-md-8">
+                        <div class="laf-dd-relative">
+                            <a class="dropdown-toggle" id="ddEndDateTime" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" datepicker-popup="MMMM dd, yyyy h:mm a" data-ng-model="event.endDate" data-ng-required="true" data-ng-blur="msgDate()">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="event.endDate" data-datetimepicker-config="{ dropdownSelector: '#ddEndDateTime'}"/>
+                            </ul>
+                        </div>               
+                    </td>
+                </tr> 
+                <tr>
+                    <td class="col-md-4"><label>Description: </label><span class="required"></span></td>
+                    <td class="col-md-8"><textarea rows="3" cols="50" data-ng-model="event.description" data-ng-required="false" class="form-control" style="max-width:342px;"/></td>
+                </tr>
+                <tr>
+                    <td class="col-md-4"><label>Category: </label><span class="required">*</span></td>
+                    <td class="col-md-8">
+                        <select data-placeholder="Select a Category" data-ng-model="event.category" data-ng-required="true" style="width:100%;" data-ng-change="msgCategory()" standard chosen-selectbox>
+                        	<option></option>
+                            <option>Outreach</option>
+                            <option>Upcoming</option>
+                            <option>Training</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4"><label>All Day Event: </label><span class="required"></span></td>
+                    <td class="col-md-8">
+                        <input type="checkbox" data-ng-model="event.allDayEvent" data-ng-required="false"/>
+                        Make this an all-day activity that doesn't start or end at a specific hour.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer" style="text-align:left;">
+            <div class="col-xs-8">
+                <span class="error-text" data-ng-bind="form.error.message" data-ng-show="!form.isValid"></span>
+            </div>
+            <div class="col-xs-4" style="text-align:right;">
+                <div class="btn btn-warning" data-ng-click="modal.cancel()" data-ng-disabled="false">Close</div>
+                <div class="btn btn-primary" data-ng-click="modal.save()" data-ng-disabled="false">Save</div>
+            </div>
+        </div>
+</div>
+

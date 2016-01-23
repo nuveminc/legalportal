@@ -1,0 +1,19 @@
+
+    <div class="page-head" data-ng-show="crumb.visible">
+	    <div class="container">
+	        <!-- BEGIN PAGE TITLE -->
+	        <div class="page-title">
+	            <h1>{{crumb.section}}
+	                <small>{{crumb.view}}</small>
+	            </h1>
+	        </div>
+	        <div class="pull-right" style="margin-top:20px;margin-right:10px;" data-ng-show="crumb.href && crumb.imgsrc">
+	        	<a data-ng-href="{{crumb.href}}" target="_blank"><img data-ng-src="{{crumb.imgsrc}}"/></a>
+	        </div>
+	        <!-- END PAGE TITLE -->
+	        <!-- BEGIN PAGE TOOLBAR -->
+	        <div class="page-toolbar">
+	        </div>
+	        <!-- END PAGE TOOLBAR -->
+	    </div>
+    </div>

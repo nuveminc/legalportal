@@ -1,0 +1,223 @@
+<!-- BEGIN PAGE CONTENT INNER -->
+<div class="page-content-inner">
+    <div class="row" style="min-height:550px;" data-ng-hide="page.listExists">
+        <div class="col-md-12 col-sm-12">
+            <div class="text-danger">The <span style="font-weight:bold;">"{{listName}}"</span> list item does not exist.</div>
+            <div>To create a new {{listName}} list item:</div>
+            <ul>
+            	<li>Click on the gear icon in the top navigation bar (above)</li>
+            	<li>Click on the gear icon in the upper right (SharePoint)</li>
+            	<li>Click "Site Contents"</li>
+            	<li>Scroll down and click "new subsite"</li>
+            	<li>Enter "{{listName}}" for the "Title" field</li>
+            	<li>Enter anything for the "Description" field</li>
+            	<li>Enter "{{listName}}" in the "URL name" field under "Web Site Address"</li>
+            	<li>Select "Team Site" for the "Template Selection"</li>
+            	<li>Select "Yes" for "Navigation Inheritance" (optional)</li>
+            	<li>Click "Create"</li>
+            </ul>        
+            <!--<div class="text-danger">The <span style="font-weight:bold;">"{{listName}}"</span> sub-site does not exist.</div>
+            <div>To create a new {{listName}} sub site:</div>
+            <ul>
+            	<li>Click on the gear icon in the top navigation bar (above)</li>
+            	<li>Click on the gear icon in the upper right (SharePoint)</li>
+            	<li>Click "Site Contents"</li>
+            	<li>Scroll down and click "new subsite"</li>
+            	<li>Enter "{{listName}}" for the "Title" field</li>
+            	<li>Enter anything for the "Description" field</li>
+            	<li>Enter "{{listName}}" in the "URL name" field under "Web Site Address"</li>
+            	<li>Select "Team Site" for the "Template Selection"</li>
+            	<li>Select "Yes" for "Navigation Inheritance" (optional)</li>
+            	<li>Click "Create"</li>
+            </ul>-->          
+        </div>
+    </div>
+    <div data-ng-show="page.listExists">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <div class="portlet light ">
+                    <div class="portlet-title">
+                        <div class="caption caption-md">
+                            <i class="fa fa-files-o font-green"></i>
+                            <span class="caption-subject font-green bold uppercase">What We Do</span>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-pencil-square-o blog-icon-right" data-ng-click="main.openModalAboutUs(page)" title="Edit" style="font-size:20px;color:#4db3a4;padding:5px;"></i>
+                        </div>
+                    </div>
+                    <div class="portlet-body" data-ng-bind-html="page.aboutUs">
+                    </div>
+                </div>
+            </div>
+            <!-- BEGIN PORTLET: RESOURCE LINKS -->
+            <div class="col-md-4 col-sm-4">
+                <!-- BEGIN PORTLET: RESOURCES & LINKS -->
+                <div class="portlet light" style="height:190px;">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption">
+                            <i class="fa fa-link font-green"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">
+	                                External Links
+	                            </span>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-pencil-square-o" data-ng-click="showEditExternalLinks = !showEditExternalLinks" data-ng-show="showEdit('externalLinks')"
+                            title="Edit" style="font-size:20px;color:#4db3a4;padding:5px;"></i>
+                            <i class="fa fa-plus-circle" data-ng-click="main.openModalExtLink(page, 'externalLinks')" style="font-size:20px;color:#4db3a4;padding:5px;"
+                            title="Add Link"></i>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <!--BEGIN CONTENT-->
+                        <div class="scroll-body" slimscroll="{height: '180px', 'color': '#D7DCE2'}" style="height:180px;">
+                            <div class="general-item-list" data-ng-repeat="link in page.externalLinks">
+                                <a href="{{link.url}}" target="_blank">
+                                    <i class="fa fa-external-link" title="{{link.title}}"></i>
+                                    <span ng-bind="link.title"></span>
+                                </a>
+                                <a href="" class="pull-right" ng-click="main.openModalExtLink(page, 'externalLinks', link)" ng-show="showEditExternalLinks">
+                                    <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!--END CONTENT-->
+                    </div>
+                </div>
+                <!-- END PORTLET: RESOURCES & LINKS -->
+            </div>
+            <!-- END PORTLET: RESOURCE LINKS -->
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <!-- BEGIN PORTLET: IMPORTANT LINKS -->
+                <div class="portlet light" style="height:430px;">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption">
+                            <i class="fa fa-link font-green"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">
+	                                Important Links
+	                            </span>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-pencil-square-o" data-ng-click="showEditImportantLinks = !showEditImportantLinks" data-ng-show="showEdit('importantLinks')"
+                            title="Edit" style="font-size:20px;color:#4db3a4;padding:5px;"></i>
+                            <i class="fa fa-plus-circle" data-ng-click="main.openModalLink(page, 'importantLinks')" style="font-size:20px;color:#4db3a4;padding:5px;"
+                            title="Add Link"></i>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <!--BEGIN CONTENT-->
+                        <div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                            <div class="general-item-list" data-ng-repeat="(key, value) in page.importantLinks">
+                                <div class="item">
+                                    <div class="item-head">
+                                    </div>
+                                    <div class="item-body">
+                                        <div style="font-weight: bold;">{{key | removeUnderscore}}:
+                                            <a href="" class="pull-right" ng-click="main.openModalCatLink(page, 'importantLinks', key)" ng-show="showEditImportantLinks">
+                                                <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                                            </a>
+                                        </div>
+                                        <ul>
+                                            <li ng-repeat="link in page.importantLinks[key]">
+                                                <a href="{{link.url}}" class="primary-link" target="_blank">{{link.title}}</a>
+                                                <a href="" class="pull-right" ng-click="main.openModalLink(page, 'importantLinks', link, key)" ng-show="showEditImportantLinks">
+                                                    <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END CONTENT-->
+                    </div>
+                </div>
+                <!-- END PORTLET: RESOURCES & LINKS -->
+            </div>
+            <!-- BEGIN PORTLET: RESOURCE LINKS -->
+            <div class="col-md-4 col-sm-4">
+                <!-- BEGIN PORTLET: RESOURCES & LINKS -->
+                <div class="portlet light" style="height:430px;">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption">
+                            <i class="fa fa-link font-green"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">
+	                                Practice Area Resources
+	                            </span>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-pencil-square-o" data-ng-click="showEditResourceLinks = !showEditResourceLinks" data-ng-show="showEdit('resourceLinks')"
+                            title="Edit" style="font-size:20px;color:#4db3a4;padding:5px;"></i>
+                            <i class="fa fa-plus-circle" data-ng-click="main.openModalLink(page, 'resourceLinks')" style="font-size:20px;color:#4db3a4;padding:5px;"
+                            title="Add Link"></i>
+                        </div>
+                    </div>
+                    <div class="portlet-body" style="height:410px;">
+                        <!--BEGIN CONTENT-->
+                        <div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                            <div class="general-item-list" data- ng-repeat="(key, value) in page.resourceLinks">
+                                <div class="item">
+                                    <div class="item-body">
+                                        <div style="font-weight: bold;">{{key | removeUnderscore}}:
+                                            <a href="" class="pull-right" ng-click="main.openModalCatLink(page, 'resourceLinks', key)" ng-show="showEditResourceLinks">
+                                                <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                                            </a>
+                                        </div>
+                                        <ul>
+                                            <li ng-repeat="link in page.resourceLinks[key]">
+                                                <a href="{{link.url}}" class="primary-link" target="_blank">{{link.title}}</a>
+                                                <a href="" class="pull-right" ng-click="main.openModalLink(page, 'resourceLinks', link, key)" ng-show="showEditResourceLinks">
+                                                    <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END CONTENT-->
+                    </div>
+                </div>
+                <!-- END PORTLET: RESOURCES & LINKS -->
+            </div>
+            <!-- END PORTLET: RESOURCE LINKS -->
+            <div class="col-md-3 col-sm-3">
+                <!-- BEGIN PORTLET: TEAM PEOPLE CONTENTS -->
+                <div class="portlet light ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-users font-green"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">People</span>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-pencil-square-o" data-ng-click="showEditPeople = !showEditPeople " data-ng-show="showEdit('people')" title="Edit"
+                            style="font-size:20px;color:#4db3a4;padding:5px;"></i>
+                            <i class="fa fa-plus-circle" data-ng-click="main.openModalLink(page, 'people')" style="font-size:20px;color:#4db3a4;padding:5px;"
+                            title="Add Link"></i>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                            <div data-ng-repeat="person in page.people">
+                                <div style="text-align:center;height:125px;" class="ng-scope">
+                                    <img style="height: 100px; width: 100px; background-color: lightgray; border: solid 1px gray;margin-top:10px;" data-ng-src="{{person.photoUrl}}">
+                                    <span style="margin: 10px 0 0 -10px;float:right;">
+	                                      <a href="" ng-click="main.openModalPeople(page, 'people', person)" ng-show="showEditPeople" class="ng-hide">
+	                                          <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+	                                      </a>
+	                                  </span>
+                                    <br>
+                                    <div style="font-size:0.8em;margin: 0 -20px 0 -30px;" class="ng-binding">{{person.displayName}},&nbsp;x{{person.ext}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PORTLET: TEAM PEOPLE CONTENTS -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT INNER -->

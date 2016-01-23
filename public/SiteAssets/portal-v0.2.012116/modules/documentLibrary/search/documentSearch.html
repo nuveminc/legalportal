@@ -1,0 +1,111 @@
+<section class="page-subheading">
+    <a ui-sref="/">
+        <i class="fa fa-chevron-circle-left laf-back-icon" title="back to dashboard"></i>
+    </a>
+    Document Search Results...
+</section>
+<main>
+    <div class="row laf-home-main">
+        <div class="col-xs-3 drop-padding-right">
+            <div class="col-xs-12 laf-home-module">
+                <div class="laf-home-header"> Narrow Results By: </div>
+                <div class="col-xs-12 laf-toolbox" ng-hide="(refinements.docType.values.length>0) || (refinements.group.values.length>0) || (refinements.values.issue.length>0)">
+                    No Refinements are available.
+                </div>
+                <!-- doc type -->
+                <div class="col-xs-12 laf-toolbox" ng-show="refinements.docType.values.length > 0">
+                    <div class="" style="font-size:1.1em;font-weight:bold;">Document Type</div>
+                    <div class="col-xs-12 drop-padding-left" ng-repeat="type in refinements.docType.values">
+                        <input type="checkbox" ng-model="refinement.docType.checked" ng-checked="refinement.docType.checked" ng-change="refinementFilter(type, refinement.docType)" />
+                        <span>{{type.label}} ({{type.count}})</span>
+                    </div>
+                    <div class="col-xs-12 drop-padding-left"><a href="">Clear</a></div>
+                </div>
+                <!-- groups -->
+                <div class="col-xs-12 laf-toolbox" ng-show="refinements.group.values.length > 0">
+                    <div class="" style="font-size:1.1em;font-weight:bold;">Work Group</div>
+                    <div class="col-xs-12 drop-padding-left" ng-repeat="group in refinements.group.values">
+                        <input type="checkbox" ng-model="refinement.group.checked" ng-checked="refinement.group.checked" ng-change="refinementFilter(group, refinement.group)" />
+                        <span>{{group.label}} ({{group.count}})</span>
+                    </div>
+                    <div class="col-xs-12 drop-padding-left" ng-show="refinements.group.values.length > 1"><a href="">Clear</a></div>
+                </div>
+                <!-- issues -->
+                <div class="col-xs-12 laf-toolbox" ng-show="refinements.issue.values.length > 0">
+                    <div class="" style="font-size:1.1em;font-weight:bold;">Issue</div>
+                    <div class="col-xs-12 drop-padding-left" ng-repeat="issue in refinements.issue.values">
+                        <input type="checkbox" ng-model="refinement.issue.checked" ng-checked="refinement.issue.checked" ng-change="refinementFilter(issue, refinement.issue)" />
+                        <span>{{issue.label}} ({{issue.count}})</span>
+                    </div>
+                    <div class="col-xs-12 drop-padding-left" ng-show="refinements.issue.values.length > 1"><a href="">Clear</a></div>
+                </div>                
+            </div>
+
+        </div>
+        <div class="col-xs-7 drop-padding">
+            <div class="col-xs-12 laf-home-module">
+                <div class="laf-home-header">
+                    Results for: <span><i ng-bind="searchResults.keywords" style="font-weight:normal;"></i></span>
+                    <span class="badge" style="margin: 2px 5px 0 0;float:right;" ng-bind="searchResults.totalRows"></span>
+                </div>
+
+                <div class="col-xs-12 laf-toolbox" ng-repeat="item in searchResults.rows">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <i class="fa fa-file-word-o blog-icon-left"></i>
+                            <span style="font-weight:bold;font-size:1.1em;"><a ng-href="{{item.originalPath}}" target="_blank">{{item.title}}</a></span>
+                        </div>
+                        <div class="col-xs-12" ng-bind-html="item.summary">
+                        </div>
+                        <div class="col-xs-12">
+                            <a href="#">{{item.path}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-2 drop-padding-left">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 laf-home-module">
+                        <div class="laf-home-header">
+                            <i class="fa fa-search blog-icon-left" title="Discussion Boards"></i>
+                            Search Tips
+                        </div>
+                        <div class="laf-toolbox">
+                            <div class="row">
+                                <div class="col-xs-12 drop-padding-left">
+                                    <ul style="padding-right:15px;">
+                                        <li><strong>Narrow your search</strong> by selecting options in the left column</li>
+                                        <li><strong>Search within results</strong> to narrow your search ever further</li>
+                                        <li><strong>Look for helpful icons</strong> that highlight the best resources</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 laf-home-module laf-home-sub-div">
+                        <div class="laf-home-header">
+                            <i class="fa fa-wrench blog-icon-left" title="Discussion Boards"></i>
+                            Tools
+                        </div>
+                        <div class="laf-toolbox">
+                            <div class="col-xs-12">
+                                <i class="fa fa-envelope-o blog-icon-left" title="Discussion Boards"></i>
+                                <a ng-href="mailto:?subject=Document&body=Link:{{window.href.location}}">Email this Page</a>
+                            </div>
+                            <div class="col-xs-12">
+                                <i class="fa fa-print blog-icon-left" title="Discussion Boards"></i>
+                                <a href="javascript:window.print()">Print this Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,10 @@
+    <div class="top-menu weather-widget" style="height:60px; width:120px; margin-right:75px; margin-top:-10px;">
+        <div style="width:50px; height:45px; float:left; margin-right:5px;">
+            <img ng-src="{{icon_url}}"/>
+        </div>
+        <div style="width: 60px;height: 45px;float:left;font-size:32px;font-weight:600; color:#34495e;">
+            <span data-ng-bind="temp_f"></span>&deg;<span style="font-size:20px;">F</span>
+        </div>
+        <div data-ng-bind-html="weather" style="width:150px; font-size:14px; text-align:center;">
+        </div>
+    </div>

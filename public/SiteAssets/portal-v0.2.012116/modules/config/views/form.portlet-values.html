@@ -1,0 +1,29 @@
+<!-- form-values.html -->
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<div><h3>Portlet Configuration Settings</h3></div>
+		<div class="form-group">
+		    <label for="name">Weather City</label>
+		    <input type="text" class="form-control" name="name" ng-model="formData.name" placeholder="e.g. Seattle">
+		</div>
+
+		<div class="form-group">
+		    <label for="email">Twitter Handle</label>
+		    <input type="text" class="form-control" name="email" ng-model="formData.email" placeholder="e.g. ReutersTech">
+		</div>
+
+		<div class="form-group">
+		    <label for="email">Twitter Id</label>
+		    <input type="text" class="form-control" name="email" ng-model="formData.email" placeholder="e.g. 685274550158753792">
+		    <div>Your Twitter Id can be obtained from the <a href="https://twitter.com/settings/widgets" target="_blank">Twitter Widgets</a> page (login to access)</div>
+		</div>	
+	</div>
+</div>
+
+<div class="form-group row">
+<div class="col-xs-3 col-xs-offset-6">
+    <a ui-sref="termstore-values" class="btn btn-block btn-info">
+    Next Step <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>

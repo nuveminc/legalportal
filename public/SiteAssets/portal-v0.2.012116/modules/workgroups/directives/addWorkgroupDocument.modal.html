@@ -1,0 +1,80 @@
+﻿<style>
+    .button {
+    -moz-appearance: button;
+    /* Firefox */
+    -webkit-appearance: button;
+    /* Safari and Chrome */
+    padding: 10px;
+    margin: 10px;
+    width: 70px;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    /*width: 225px;*/
+    width:250px;
+    /*height: 65px;*/
+    height: 120px;
+    text-align: center;
+    padding: 20px;
+    /*margin: 10px;*/
+    margin: 10px 0 -15px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+</style>
+<div id="modal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" style="text-align:right;">×</button>
+        <h3 class="modal-title"><span ng-bind="modal.state"></span> Document</h3>
+    </div>
+    <div class="modal-body" style="overflow-y:auto;max-height:560px;">
+        <table class="table">
+            <tr>
+                <td class="col-md-6"><label>Private Workgroup File(s):</label></td>
+                <td class="col-md-6"><input type="checkbox" ng-model="document.private" />&nbsp;&nbsp;Check to make the file or files private to the workgroup</td>
+            </tr>
+            <tr ng-show="!isUpdating">
+                <td class="col-md-6"><label>Upload Multiple Files:</label></td>
+                <td class="col-md-6"><input type="checkbox" ng-model="document.multiples" ng-change="checkMultiples()" />&nbsp;&nbsp;Check to upload multiple files</td>
+            </tr>
+            <tr ng-if="!document.multiples">
+                <td class="col-md-6"><label>Title/Description: </label><span class="required">*</span></td>
+                <td class="col-md-6"><textarea ng-model="document.title" ng-required="true" class="form-control" placeholder="Describe your document here"  /></td>
+            </tr>
+
+            <tr ng-if="!document.multiples" ng-hide="isUpdating">
+                <td class="col-md-6"><div data-nv-file-upload=""  ng-model="document.files" data-btn-text="choose file" data-btn-class="btn btn-default btn-sm" data-is-required="true" data-is-required-class="required" data-file-name="document.fileName" upload-immediately="false"></div></td>
+                <td class="col-md-6"><input type="text" data-ng-model="document.fileName" data-ng-required="true" class="form-control" readonly /></td>
+            </tr>
+            <tr ng-if="document.multiples" ng-hide="isUpdating">
+                <td class="col-md-6"><label>Drop Files:</label>                      
+                    <ul>
+                        <li data-ng-repeat="f in document.files" style="font:smaller">{{f.name}}</li>
+                    </ul>                            
+                </td>
+                <td class="col-md-6">
+                    <div>
+                        <div data-ngf-drop="true" data-ngf-select="true" data-ng-model="document.files" 
+                            data-ngf-drag-over-class="dragover" data-ngf-multiple="true" data-ngf-allow-dir="true" data-ngf-keep="true"
+                            data-accept="image/*,application/*" class="drop-box" style="cursor:pointer;">Drop files here or click to browse and add files</div>
+                        <div data-ngf-no-file-drop="false">File Drag/Drop is not supported for this browser</div>
+                        <div data-ng-if="files">Files:</div>                            
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </div>
+    <div class="modal-footer">
+        <span class="error-text pull-left" data-ng-show="!form.isValid"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<span data-ng-bind="form.error.message"></span></span>
+        <span class="pull-left" data-ng-show="form.isSaving"><span class="laf-spinner"></span><span class="progress-text" data-ng-bind="form.progress.message"></span></span>
+        <!-- messaging directive -->
+        <!--<span modal-messaging="" data-show-error="!form.isValid" data-show-message="form.isSaving" data-error-message="form.error.message" data-progress-message="form.progress.message" data-is-sticky="form.isSticky"></span>-->
+        <button class="btn btn-warning" data-ng-click="modal.cancel()" ng-disabled="false">Close</button>
+        <button class="btn btn-success" data-ng-click="modal.save()" ng-show="!isUpdating" ng-disabled="false">Upload</button>
+        <button class="btn btn-success" data-ng-click="modal.save()" ng-show="isUpdating" ng-disabled="false">Save</button>
+    </div>
+</div>
+
+

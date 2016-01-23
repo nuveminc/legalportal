@@ -1,0 +1,22 @@
+﻿<div class="col-xs-12 laf-event-module">
+	<div class="laf-event-header">
+	    {{title}}
+	    <a href="" ng-click="openModalAddWorkgroupDocument(workgroupDocuments)">
+	        <i class="fa fa-plus-circle blog-icon-right" title="Add Link to Important Document"></i>
+	    </a>
+	    <a href="" ng-click="showEditWorkgroupDocs = !showEditWorkgroupDocs" ng-hide="workgroupDocuments.length==0;">
+	        <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"  style="margin-right:5px;"></i>
+	    </a>
+	</div>
+	<div style="margin: 10px 0 2px;">
+	    <div ng-repeat="doc in workgroupDocuments" class="col-xs-12">
+	        <a ng-click="openDocument(doc)" target="_blank">
+	        	<div class="col-xs-6"><i get-extension style="margin-right:5px;margin-left:-15px;"></i>{{doc.title}}</div>
+	        	<div  class="col-xs-5">{{doc.createdBy.Name| limitTo: 19}}</div>
+	        </a>
+	        <a href="" class="col-xs-1" ng-click="openModalAddWorkgroupDocument(workgroupDocuments, doc)" ng-show="showEditWorkgroupDocs">
+	            <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+	        </a>
+	    </div>
+	</div>
+</div>

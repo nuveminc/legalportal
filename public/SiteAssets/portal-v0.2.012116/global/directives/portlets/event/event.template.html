@@ -1,0 +1,101 @@
+    <!-- BEGIN PORTLET: EVENTS -->
+    <div class="portlet light ">
+        <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="fa fa-calendar-o font-green"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">
+                    Events                
+                </span>
+            </div>
+            <div class="actions">
+                <i class="fa fa-refresh" 
+                    style="font-size:20px;color:#4db3a4;padding:5px;"
+                    data-ng-click="portlet.refresh()" 
+                    uib-popover="Refresh" 
+                    popover-trigger="mouseenter"                    
+                    title="Refresh"></i>
+
+                <i class="fa fa-plus-circle" 
+                    data-ng-click="addModal({events: events, category: category})"
+                    uib-popover="Add Post" 
+                    popover-trigger="mouseenter"                    
+                    style="font-size:20px;color:#4db3a4;padding:5px;" 
+                    title="Add Event"></i>
+            </div>                                             
+            <ul class="nav nav-tabs">
+                <li style="border-bottom: 4px solid #55616f;">
+                    <a href="#tab_1_0" class="active" data-toggle="tab"> All </a>
+                </li>
+                <li style="border-bottom: 4px solid rgba(80, 166, 51, 0.8);">
+                    <a href="#tab_1_1" data-toggle="tab"> Upcoming </a>
+                </li>
+                <li style="border-bottom: 4px solid rgba(242, 86, 34, 0.8);">
+                    <a href="#tab_1_2" data-toggle="tab"> Outreach </a>
+                </li>
+                <li style="border-bottom: 4px solid rgba(51, 118, 166, 0.8);">
+                    <a href="#tab_1_3" data-toggle="tab"> Training </a>
+                </li>                                                 
+            </ul>
+        </div>
+        <div class="portlet-body" data-ng-hide="portlet.listExists">
+        	<div class="text-danger">Events list does not exist.</div>
+        	<div>To create the Events list:</div>
+        	<ul>
+            	<li>Click on the gear icon in the top navigation bar (above)</li>
+            	<li>Click on the gear icon in the upper right (SharePoint)</li>
+            	<li>Click "Site Contents"</li>
+            	<li>Click "add an app"</li>
+            	<li>Click "Calendar"</li>
+            	<li>Enter "Events" for the "Title" field</li>
+            	<li>Click "Create"</li>
+            	<li>Change the default "Categories" field</li>
+            	<li>Click "Events"</li>
+            	<li>Click (from the ribbon) "Calendar" tab</li>
+            	<li>Click "List Settings"</li>
+            	<li>Click (in "Columns" section) "Category"</li>
+            	<li>Replace the default values (Meeting, Work hours, etc.)
+            		<ul>
+            			<li>Upcoming</li>
+            			<li>Outreach</li>
+            			<li>Training</li>
+            		</ul>
+            	</li>
+        	</ul>
+        	
+        </div>
+        <div class="portlet-body" data-ng-show="portlet.listExists">
+            <!--BEGIN TABS-->
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1_0">
+                	<div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                        <div class="general-item-list" data-ng-repeat="event in events.all">
+                            <div class="item" event-item="event" view-modal="viewModal({events: events.all, category: 'All'})"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_1_1">
+                	<div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                        <div class="general-item-list" data-ng-repeat="event in events.upcoming">
+                            <div class="item" event-item="event" view-modal="viewModal({events: events.upcoming, category: 'Upcoming'})"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_1_2">
+                    <div class="scroller" style="height: 290px;" data-always-visible="1" data-rail-visible1="1">
+                        <div class="general-item-list" data-ng-repeat="event in events.outreach">
+                            <div class="item" event-item="event" view-modal="viewModal({events: events.outreach, category: 'Outreach'})"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_1_3">
+                    <div class="scroller" style="height: 290px;" data-always-visible="1" data-rail-visible1="1">
+                        <div class="general-item-list" data-ng-repeat="event in events.training">
+                            <div class="item" event-item="event" view-modal="viewModal({events: events.training, category: 'Training'})"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END TABS-->
+        </div>
+    </div>
+    <!-- END PORTLET: EVENTS -->

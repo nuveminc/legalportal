@@ -1,0 +1,24 @@
+<div id="modal">
+    <div class="modal-header">
+        <button type="button" class="laf-modal-close pull-right" ng-click="modal.cancel()"></button>
+        <h3 class="modal-title">Edit Category</h3>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <tr>
+                <td class="col-md-4"><label>Category: </label><span class="required">*</span></td>
+                <td class="col-md-8"><input type="text" data-ng-model="key" data-ng-required="true"  ng-blur="msgTitle()" class="form-control" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer" style="text-align:left;">
+        <div class="col-xs-8">
+            <span class="error-text" data-ng-bind="form.error.message" data-ng-show="!form.isValid"></span>
+            <!--<span ng-show="form.isSaving">Saving &nbsp;</span><img ng-src="../../Images/emp/ajax-loader-trans.gif" ng-show="form.isSaving" />&nbsp;&nbsp;-->
+        </div>
+        <div class="col-xs-4" style="text-align:right;">
+            <div class="btn btn-warning" data-ng-click="modal.cancel()" data-ng-disabled="false">Close</div>
+            <div class="btn btn-primary" data-ng-click="modal.save()" data-ng-disabled="false">Save</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div id="modal">
+    <div class="modal-header">
+        <button type="button" class="laf-modal-close pull-right" ng-click="modal.cancel()"></button>
+        <h3 class="modal-title"> Add Image</h3>
+    </div>
+    <div class="modal-body" style="overflow-y:auto;max-height:560px;">
+        <ol>
+            <li>Select the location of the image.</li>
+            <li>Click the 'choose file' button to browse your computer -OR-</li>
+            <li>Drag and drop a file from your computer.</li>
+        </ol> 
+        <table class="table">
+            <!-- <tr ng-if="!document.multiples" ng-hide="isUpdating">
+                <td class="col-md-6"><div data-nv-file-upload=""  data-ng-model="item.files" data-btn-text="choose file" data-btn-class="btn btn-default btn-sm" data-is-required="true" data-is-required-class="required" data-file-name="document.fileName" upload-immediately="false"></div></td>
+                <td class="col-md-6"><input type="text" data-ng-model="item.fileName" data-ng-required="true" class="form-control" readonly /></td>
+            </tr> -->
+            <tr>
+                <td class="col-md-6"><label>Drag and Drop File:</label>                      
+                    <ul>
+                        <li data-ng-repeat="file in item.files" style="font:smaller">{{file.name}}</li>
+                    </ul>                            
+                </td>
+                <td class="col-md-6">
+                    <div>
+                        <div data-ngf-drop="true" data-ngf-select="true" data-ng-model="item.files" 
+                            data-ngf-drag-over-class="dragover" data-ngf-multiple="true" data-ngf-allow-dir="true" data-ngf-keep="true"
+                            data-accept="image/*,application/*" class="drop-box" style="cursor:pointer;">Drop files here or click to browse and add files</div>
+                        <div data-ngf-no-file-drop="false">File Drag/Drop is not supported for this browser</div>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </div>
+    <div class="modal-footer">
+        <span class="error-text pull-left" data-ng-hide="modal.form.isValid"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<span data-ng-bind="form.error.message"></span></span>
+        <span class="pull-left" data-ng-show="modal.form.isSaving"><span class="laf-spinner"></span><span class="progress-text" data-ng-bind="form.progress.message"></span></span>
+        <!-- messaging directive -->
+        <!--<span modal-messaging="" data-show-error="!form.isValid" data-show-message="form.isSaving" data-error-message="form.error.message" data-progress-message="form.progress.message" data-is-sticky="form.isSticky"></span>-->
+        <button class="btn btn-warning" data-ng-click="modal.cancel()" ng-disabled="false">Close</button>
+        <button class="btn btn-success" data-ng-click="modal.form.save()" ng-show="!isUpdating" ng-disabled="false">Upload</button>
+    </div>
+</div>

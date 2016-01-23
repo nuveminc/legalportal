@@ -1,0 +1,123 @@
+    <div class="container">
+        <!-- BEGIN HEADER SEARCH BOX -->
+        <div class="search-form">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="searchKeywords" data-ng-click="expand()" data-ng-keypress="registerKeypress($event)" placeholder="Search">
+                <span class="input-group-btn">
+                    <a href="" class="btn submit" data-ng-click="search()">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!-- END HEADER SEARCH BOX -->
+        <!-- BEGIN MEGA MENU -->
+        <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+        <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+        <div class="hor-menu">
+            <ul class="nav navbar-nav">
+                <li class="menu-dropdown mega-menu-dropdown active">
+                    <a class="dropdown-toggle uppercase" data-ui-sref="/" data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown">
+                        Home
+                    </a>
+                </li>
+                <li class="menu-dropdown classic-menu-dropdown ">
+                    <a href="" class="uppercase"> Library </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li><a data-ui-sref="documentLibrary" class="nav-link"> View Documents </a></li>
+                        <li><a data-ng-click="addDocument()" class="nav-link"> Add Document </a></li>
+                    </ul>
+                </li>                            
+                <li class="menu-dropdown mega-menu-dropdown">
+                    <a href="" class="uppercase"> Workgroups </a>
+                    <ul class="dropdown-menu" style="min-width: ">
+                        <li>
+                            <div class="mega-menu-content col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="mega-menu-submenu" style="display:block;">
+                                            <li><a data-ui-sref="accountingFinance" style="white-space:nowrap;">Accounting &amp; Finance</a></li>
+                                            <li><a data-ui-sref="administrationSupport">Administration &amp; Support</a></li>
+                                            <li><a data-ui-sref="childrenFamilies">Children &amp; Families</a></li>
+                                            <li><a data-ui-sref="civilPractice">Civil Practice &amp; Procedure</a></li>
+                                            <li><a data-ui-sref="clientScreeningUnit">Client Screening</a></li>
+                                            <li><a data-ui-sref="clientSupportServices">Client Support Services</a></li>
+                                            <li><a data-ui-sref="communityEngagementUnit">Community Engagement</a></li>
+                                            <li><a data-ui-sref="consumer">Consumer</a></li>
+                                            <li><a data-ui-sref="externalRelations">External Relations / Fundraising</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="mega-menu-submenu">
+                                            <li><a data-ui-sref="housing">Housing</a></li>
+                                            <li><a data-ui-sref="humanResources">Human Resources</a></li>
+                                            <li><a data-ui-sref="immigrantWorkersRights">Immigrants &amp; Workers' Rts</a></li>
+                                            <li><a data-ui-sref="informationTechnology">Information Technology</a></li>
+                                            <li><a data-ui-sref="publicBenefits">Public Benefits</a></li>
+                                            <li><a data-ui-sref="training">Training</a></li>
+                                            <li><a data-ui-sref="volunteerServicesUnit">Volunteer / Pro Bono Services</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-dropdown mega-menu-dropdown">
+                    <a href="" class="uppercase"> Task Forces / Committees </a>
+                    <ul class="dropdown-menu" style="min-width: ">
+                        <li>
+                            <div class="mega-menu-content col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="mega-menu-submenu" style="display:block;">
+                                            <li><a data-ui-sref="civilRights">Civil Rights</a></li>
+                                            <li><a data-ui-sref="domesticViolence">Domestic Violence</a></li>                             
+                                            <li><a data-ui-sref="HIVAIDS">HIVAIDS</a></li>
+                                            <li><a data-ui-sref="peopleDisabilities">People with Disabilities</a></li>
+                                            <li><a data-ui-sref="seniors">Seniors</a></li>
+                                            <li><a data-ui-sref="suburbanClients">Suburban Clients</a></li>
+                                            <li><a data-ui-sref="veterans">Veterans</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="mega-menu-submenu">
+                                            <li><a data-ui-sref="attorneysFeesCommittee">Attorneys' Fees Committee</a></li>
+                                            <li><a data-ui-sref="employeeRecognitionCommittee">Employee Recognition Committee</a></li>
+                                            <li><a data-ui-sref="ethicsCommittee">Ethics Committee</a></li>
+                                            <li><a data-ui-sref="executiveCommittee">Executive Committee</a></li>
+                                            <li><a data-ui-sref="lepCommittee">LEP Committee</a></li>
+                                            <li><a data-ui-sref="summerInternCommittee">Summer Intern Committee</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-dropdown classic-menu-dropdown ">
+                    <a href="" class="uppercase"> Staff Resources </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li><a data-ui-sref="employeeBenefits">Employee Benefits &amp; Services</a></li>
+                        <li><a data-ui-sref="policies">Policies</a></li>
+                        <li><a data-ui-sref="cba">CBA</a></li>
+                        <li><a data-ui-sref="paylocity">Paylocity</a></li>
+                        <li><a data-ui-sref="training">Training</a></li>
+                        <li><a data-ui-sref="forms">Forms</a></li>
+                        <li><a data-ui-sref="officeAdmin">Office Administration &amp; Facility Requests</a></li>
+                    </ul>
+                </li> 
+                <li class="menu-dropdown mega-menu-dropdown">
+                    <a href="/_layouts/15/start.aspx#/_layouts/15/viewlsts.aspx" class="dropdown-toggle uppercase" data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown">
+                        <i class="fa fa-gear" style="font-size:20px;" tooltip-placement="top" uib-tooltip="Click to go to SharePoint"></i>
+                    </a>
+                </li>                         
+                <li class="menu-dropdown mega-menu-dropdown">
+                    <a class="dropdown-toggle uppercase" data-ui-sref="howTo" data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown">
+                        <i class="fa fa-question-circle" style="font-size:20px;" tooltip-placement="top" uib-tooltip="Click for How To Documents"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END MEGA MENU -->
+    </div>

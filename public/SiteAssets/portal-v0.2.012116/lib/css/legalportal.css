@@ -1,0 +1,145 @@
+/* PORTLET STYLE OVERLOADS */
+.portlet-body-no-padding {
+	padding-top: 0;
+}
+
+.portlet.light.trim-top {
+	padding-top: 0;
+}
+
+.portlet.light.trim-top > portlet-title.trim-top {
+	padding: 30;
+	min-height: 0 !important;
+}
+
+.primary-link {
+    cursor: pointer;
+}
+
+/* LP SPECIFIC SEARCH OVERLOAD */
+.page-header .page-header-menu .search-form .input-group .form-control {
+  background-color: #82949a;
+  color: #f0f0f0;
+  font-weight: 400;
+  font-size: 16px;
+}
+.page-header .page-header-menu .search-form .input-group {
+  background-color: #82949a;
+  font-weight: 400;
+}
+.page-header .page-header-menu .search-form .input-group .input-group-btn .btn.submit > i {
+  color: #f0f0f0;
+}
+.input-group-btn {
+  background-color: #82949a; 
+}
+.btn.submit {
+  color: #000000;
+}
+input::-webkit-input-placeholder {
+   color: #c0c0c0 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   color: #c0c0c0 !important;  
+}
+
+input:-moz-placeholder {  /* Firefox 19+ */
+   color: #c0c0c0 !important;  
+}
+
+input:-ms-input-placeholder {  
+   color: #c0c0c0 !important;  
+}
+
+/* LP SPECIFIC STYLES */
+.laf-label-green {
+    background-color: rgba(80, 166, 51, 0.8);
+}
+.laf-label-red {
+    background-color: rgba(242, 86, 34, 0.8);
+}
+.laf-label-blue {
+    background-color: rgba(51, 118, 166, 0.8);
+}
+
+/* green */
+.laf-badge-upcoming {
+  background-color: rgba(80, 166, 51, 0.8);
+  background-image: none;
+}
+/* red */
+.laf-badge-community {
+  background-color: rgba(242, 86, 34, 0.8);
+  background-image: none;
+}
+/* blue */
+.laf-badge-training {
+  background-color: rgba(51, 118, 166, 0.8);
+  background-image: none;
+}
+
+.laf-doc-field-row {
+    padding:5px 0;
+}
+
+.laf-doc-fields {
+    padding-top: 6px;
+    text-align: right; 
+    font-weight: bold;    
+    white-space: nowrap;
+    font-size:0.9em;
+    min-height:30px;
+}
+
+.laf-toolbox {
+    margin: 10px 0 0;
+}
+
+.laf-doc-field-row:nth-child(odd) {
+    background-color:white;
+}
+
+.laf-doc-field-row:nth-child(even) {
+    background-color:#ededed;
+}
+
+.required {
+    color:red;
+    margin-left:2px;
+}
+
+.laf-dd-relative {
+    position:relative;
+}
+
+.sp-library {
+    display: inline-block;
+    background: #f0f0f0 url(../images/sp-library.png);
+}
+
+.sp-library {
+    display: inline-block;
+    background:  #f0f0f0  url(../images/sp-list.png);
+}
+
+/* MODALS */
+button.laf-modal-close:after {
+  content: 'Close';
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    /*width: 225px;*/
+    width:250px;
+    /*height: 65px;*/
+    height: 120px;
+    text-align: center;
+    padding: 20px;
+    /*margin: 10px;*/
+    margin: 10px 0 -15px;
+}
+.dragover {
+    border: 5px dashed blue;
+}

@@ -1,0 +1,50 @@
+    <!-- BEGIN DISCUSSIONS PORTLET-->
+    <div class="portlet light ">
+        <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="fa fa-comments font-green"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">Discussions</span>
+            </div>
+            <div class="actions">
+                <i class="fa fa-plus-circle blog-icon-right" data-ng-click="addModal({boards:boards})" style="font-size:20px;color:#4db3a4;padding:5px;" title="Add Discussion"></i>
+            </div> 
+        </div>
+        <div class="portlet-body">
+	        <div class="scroll-body" data-ng-show="portlet.list.missing.length > 0">
+	        	<ul data-ng-repeat="listName in portlet.list.missing">
+	        		<li class="text-danger">{{listName}} Discussion List doesn't exist</li>
+	        	</ul>
+	        	<div>To create new Discussions:</div>
+	        	<ul>
+                	<li>Click on the gear icon in the top navigation bar (above)</li>
+                	<li>Click on the gear icon in the upper right (SharePoint)</li>
+                	<li>Click "Site Contents"</li>
+                	<li>Click "add an app"</li>
+                	<li>Click "Discussion Board"</li>
+                	<li>Enter "JudgesDecisions" or "WaterCooler" for the "Title" field
+                		<div>(depending on which one or both if missing)</div>
+                	</li>
+                	<li>Click "Create"</li>
+	        	</ul>
+	        </div>
+	        <div data-ng-hide="portlet.list.missing.length > 0">
+	            <div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+	                <ul class="feeds" data-ng-repeat="post in posts | orderBy: 'timestamp': reverse=true | limitTo:20">
+	                    <li style="padding: 5px 0; margin-bottom: 10px;">
+	                        <span class="label label-sm" data-ng-class="setBoardIconColor(post)" style="margin-right:10px; padding:4px 5px 6px 8px;">
+	                            <i class="fa" data-ng-class="setBoardIcon(post)"></i>
+	                        </span>
+	                        <span class="primary-link" data-ng-bind="post.subject | truncate:53" data-ng-click="viewModal({post:post})"></span>
+	                        <div class="pull-right">
+	                            {{post.timestamp | date:'EEE'}}, {{post.timestamp | date}}                           
+	                        </div>
+	                        <div class="pull-right" style="padding-right: 30px;">
+	                            <span>Replies:</span> {{post.replies.length}} <span data-ng-bind="showLastReplyBy(post.replies)" data-ng-show="false"></span>
+	                        </div>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+        </div>
+    </div>
+    <!-- END DISCUSSIONS PORTLET-->

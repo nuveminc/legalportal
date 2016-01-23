@@ -1,0 +1,97 @@
+﻿
+<div id="modal">
+    <div ng-show="!updatingBlog">
+        <div class="modal-header">        
+            <button type="button" class="laf-modal-close pull-right" ng-click="modal.cancel()"></button>
+            <h3 class="modal-title">{{blogPost.title | getCharCode}}</h3>
+            <h5><span>{{blogPost.publishedDate | blogDateTime}}</span><span style="padding-left:30px;">Posted by: {{blogPost.author}}</span></h5>
+        </div>
+        <div class="modal-body">
+            <div data-ng-bind-html="blogPost.body | noDescription | getCharCode"></div>
+            <!-- BEGIN COMMENT SECTION -->
+            <div data-ng-show="blogPost.comments.length > 0" style="border: 1px solid #f0f0f0; margin-bottom: 10px;">
+                <div class="title" style="font-size: 20px; padding: 10px; border-bottom: 1px solid #f0f0f0; background-color: #f0f0f0; color: #999999;">
+                    Comments:
+                </div>
+                <div class="scroll-body" slimscroll="{height: '180px', 'color': '#D7DCE2'}" style="margin-top:5px; height:180px;">
+                    <div class="comment-list" data-ng-repeat="comment in blogPost.comments">
+                        <div class="comment" style="padding:10px;">
+                            <div class="comment-author" style="color:#34495e; border-bottom:1px solid #f0f0f0; margin-bottom: 5px;">
+                                <span data-ng-bind="comment.author" style="font-weight:bold; color:#999;"></span>
+                                <div data-ng-bind="comment.created | blogDateTime" class="pull-right" style="font-style: italic; font-weight:300;">
+                                </div>
+                            </div>
+                            <div data-ng-bind-html="comment.body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END COMMENT SECTION -->
+            <!-- BEGIN COMMENT BUTTON -->
+            <div class="btn btn-success" data-ng-click="addComment = true" data-ng-disabled="isDeleting">Add Comment</div>
+            <!-- END COMMENT BUTTON -->
+            <div ng-show="addComment">
+                <div class="modal-header">        
+                    <h3 class="modal-title">Comment</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td class="col-xs-12" colspan="2">
+                                <div text-angular ng-model="comment.body" ta-file-drop="blogPost.fileDrop"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-8" style="text-align:left;">
+                        <span class="error-text" data-ng-bind="form.error.message" data-ng-show="!form.isValid"></span>
+                    </div>
+                    <div class="col-xs-4" style="text-align:right;">
+                        <div class="btn btn-warning" data-ng-click="addComment = false" data-ng-disabled="false">Cancel</div>
+                        <div class="btn btn-primary" data-ng-click="modal.comment.save()" data-ng-disabled="false">Save</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="btn btn-warning" data-ng-click="modal.cancel()" data-ng-disabled="false">Close</div>
+            <div style="text-align:right;" class="btn btn-success" data-ng-click="modal.edit()" data-ng-disabled="isDeleting">Edit</div>
+        </div>
+    </div>
+    <div ng-show="updatingBlog">
+        <div class="modal-header">        
+            <button type="button" class="close" ng-click="modal.cancel()" style="text-align:right;">×</button>
+            <h3 class="modal-title">{{blogPost.title | getCharCode}}</h3>
+            <h5>{{blogPost.publishedDate | date: 'short'}}</h5>
+            <span class="pull-right">Author</span>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <tr>
+                    <td class="col-xs-2"><label>Title: </label><span class="required">*</span></td>
+                    <td class="col-xs-10"><input type="text" ng-model="blogPost.title" ng-required="true" class="form-control" /></td>
+                </tr> 
+                <tr>
+                    <td class="col-xs-2"><label>Category: </label><span class="required">*</span></td>
+                    <td class="col-xs-10"><select ng-options="category as category.title for category in post.categories" ng-model="blogPost.postCategory" ng-required="true" class="form-control"></select></td>
+                </tr>
+                <tr>
+                    <td class="col-xs-12" colspan="2"><div text-angular ng-model="blogPost.body" ta-file-drop="blogPost.fileDrop"></div></td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+
+            <div class="col-xs-8" style="text-align:left;">
+                <span class="error-text" data-ng-bind="form.error.message" data-ng-show="!form.isValid"></span>
+                <!--<span ng-show="form.isSaving">Saving &nbsp;</span><img ng-src="../../Images/emp/ajax-loader-trans.gif" ng-show="form.isSaving" />&nbsp;&nbsp;-->
+            </div>
+            <div class="col-xs-4" style="text-align:right;">
+                <div class="btn btn-warning" data-ng-click="updatingBlog = false" data-ng-disabled="false">Cancel</div>
+                <div class="btn btn-primary" data-ng-click="modal.save()" data-ng-disabled="false">Save</div>
+            </div>
+        </div>
+    </div>
+</div>

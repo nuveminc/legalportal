@@ -1,0 +1,53 @@
+
+    <div class="container">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a data-ui-sref="/">
+                <!-- <img src="SiteAssets/portal/lib/images/logo-default.jpg" alt="logo" class="logo-default"> -->
+                <img data-ng-src="{{banner.logoUrl}}" alt="logo" class="logo-default" style="height:60px; margin-top: 6px; margin-left: 5px;"/>
+            </a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler"></a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu" data-ng-if="banner.initialized">
+            <ul class="nav navbar-nav">
+                <li>
+                    <div weather-widget></div>
+                </li>
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li class="dropdown dropdown-user dropdown-light">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img alt="" class="img-circle" data-ng-src="{{banner.user.photoUrl}}" style="height:40px;">
+                        <span class="username username-hide-mobile" data-ng-bind="banner.user.displayName"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a data-ng-href="/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments" target="_blank" style="white-space:nowrap;">
+                                <i class="icon-calendar"></i> One Drive
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/_layouts/15/MySite.aspx?MySiteRedirect=AllSites" target="_blank" style="white-space:nowrap;">
+                                <i class="icon-user"></i> My Site
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/default.aspx" target="_blank" style="white-space:nowrap;">
+                                <i class="icon-envelope-open"></i> Newsfeeds
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/_layouts/15/start.aspx#/Person.aspx" target="_blank" style="white-space:nowrap;">
+                                <i class="icon-lock"></i> About Me
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>

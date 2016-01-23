@@ -1,0 +1,35 @@
+    <!-- BEGIN COMMENTS PORTLET-->
+    <div class="portlet light ">
+        <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="fa fa-comments font-green"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">Comments</span>
+            </div>
+            <div class="actions">
+                <i class="fa fa-plus-circle blog-icon-right" data-ng-click="addModal()" style="font-size:20px;color:#4db3a4;padding:5px;" title="Add Discussion"></i>
+            </div> 
+        </div>
+        <div class="portlet-body">
+        	<div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+                <ul class="feeds" data-ng-repeat="comment in comments">
+                    <li style="margin-top:5px;">
+                        <div class="col1">
+                            <div class="cont" style="width:100%; margin:5px 0;">
+                                <div class="cont-col1">
+                                    <div class="label label-sm label-success">
+                                        <i class="fa fa-file-pdf-o"></i>
+                                    </div>
+                                </div>
+                                <div class="cont-col2" style="padding-right: 10px;">
+                                    <span class="desc" data-ng-bind="comment.author.title || 'no author'"></span>
+                                    <span class="date pull-right" data-ng-bind="comment.created | datepickerDateTime"></span>
+                                    <div style="margin:10px 10px; font-style:italic;" data-ng-bind="comment.body"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END COMMENTS PORTLET-->

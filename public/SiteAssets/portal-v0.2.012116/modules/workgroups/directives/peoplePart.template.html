@@ -1,0 +1,32 @@
+﻿<div class="col-xs-2 drop-padding-left">
+    <div class="col-sm-12 laf-home-module" style="margin-top: 7px;" item-slider items="module.people" display-height="500" display-speed="500">
+        <div class="col-sm-12 laf-home-header">
+            People
+            <a href="" ng-click="module.openModalPeople(page, 'person')">
+                <i class="fa fa-plus-circle blog-icon-right" title="Add Link"></i>
+            </a>
+
+            <a href="" ng-click="module.showEditPeople = !module.showEditPeople" >
+                <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"  style="margin-right:5px;"></i>
+            </a>
+        </div>
+        <div class="col-sm-12" style="margin: 10px 0 2px;height:500px;overflow:hidden;">
+            <div ng-repeat="person in module.people" style="text-align:center;height:125px;">
+                <img style="height: 100px; width: 100px; background-color: lightgray; border: solid 1px gray;margin-top:10px;" ng-src="{{module.person.photoUrl}}" />
+                <span style="margin: 10px 0 0 -10px;float:right;">
+                    <a href="" ng-click="module.openModalPeople(page, 'people', person)" ng-show="module.showEditPeople">
+                        <i class="fa fa-pencil-square-o blog-icon-right" title="Edit"></i>
+                    </a>
+                </span><br />
+                <div style="font-size:0.8em;margin: 0 -20px 0 -30px;">{{person.displayName}},&nbsp;x{{person.ext}}</div>
+            </div>
+        </div>
+        <div class="row col-xs-12" style="height:49px;padding: 25px 0 0 50px;">
+            <div ng-show="page.people.length > 4"  class="btn btn-default btn-xs laf-bp-btn" style="width:50px;" ng-disabled="fIndex<1" prev-slider-items>    
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{'laf-bp-btn-disabled':fIndex<1 }"></span>
+            </div>
+            <div ng-show="page.people.length > 4"  class="btn btn-default btn-xs laf-bp-btn" style="width:50px;" ng-disabled="fIndex+1 >= (page.people.length/4)" next-slider-items><span class="glyphicon glyphicon-chevron-down" ng-class="{'laf-bp-btn-disabled':fIndex>0 }"></span>
+            </div>
+        </div>
+    </div>
+</div>

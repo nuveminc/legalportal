@@ -1,0 +1,77 @@
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption caption-md">
+            <i class="fa fa-users font-green" style="font-size:20px;"></i>
+            <span class="caption-subject font-green bold uppercase">Blog</span>
+        </div>
+        <div class="actions">
+            <i class="fa fa-refresh"
+                style="font-size:20px;color:#4db3a4;padding:5px;"
+                data-ng-click="portlet.refresh()"
+                uib-popover="Refresh"
+                popover-trigger="mouseenter"
+                title="Refresh"></i>
+
+            <i class="fa fa-plus-circle"
+                data-ng-click="addModal()"
+                uib-popover="Add Post"
+                popover-trigger="mouseenter"
+                style="font-size:20px;color:#4db3a4;padding:5px;"
+                title="Add Post"></i>
+        </div>
+    </div>
+    <div class="portlet-body">
+      <div class="scroll-body" slimscroll="{height: '338px', 'color': '#D7DCE2'}" style="height:338px;">
+            <div class="general-item-list" data-ng-hide="portlet.siteExists">
+                <span class="text-danger">Blog Site does not exist - please create the site.</span>
+                <div>To create a new Blog sub site:</div>
+                <ul>
+                	<li>Click on the gear icon in the top navigation bar (above)</li>
+                	<li>Click on the gear icon in the upper right (SharePoint)</li>
+                	<li>Click "Site Contents"</li>
+                	<li>Scroll down and click "new subsite"</li>
+                	<li>Enter "Blog" for the "Title" field</li>
+                	<li>Enter anything for the "Description" field</li>
+                	<li>Enter "Blog" in the "URL name" field under "Web Site Address"</li>
+                	<li>Select "Blog" for the "Template Selection"</li>
+                	<li>Select "Yes" for "Navigation Inheritance" (optional)</li>
+                	<li>Click "Create"</li>
+                </ul>
+            </div>      
+            <div class="general-item-list" data-ng-repeat="blog in posts">
+                <div class="item">
+                    <div class="item-head">
+                        <div class="item-details">
+                            <div class="label-danger" ng-style="setCategoryColor(blog)" style="color:white;float:left;padding:5px 10px;margin-right:20px;">
+                                <div data-ng-bind="blog.publishedDate | date: 'MMM'"></div>
+                                <div style="text-align:center;font-weight:bold;" data-ng-bind="blog.publishedDate | date: 'dd'"></div>
+                            </div>
+                        </div>
+                        <span>
+                            <a href="" class="primary-link" data-ng-click="viewModal({blogPosts:blogs, blogPost:blog})" title="{{blog.title}}">
+                                <span data-ng-bind="blog.title"></span>
+                            </a>
+                        </span>
+                        <div>
+                          By: <span data-ng-bind="blog.author"></span>
+                          <div class="pull-right" data-ng-click="likePost(blog)" style="margin-top:-5px; cursor:pointer; background-color:#f0f0f0; height:24px; width:24px; border:1px solid #f0f0f0; border-radius:10px !important; padding:1px 2px 0 5px;">
+                            <!--<a data-ng-hide="showUserLikes(blog)"><i class="fa fa-thumbs-up" title="Like this post" ng-style="blog.isLiked ? {color: 'rgba(80, 166, 51, 0.8)'} : {}"></i></a>-->
+                            <a data-ng-hide="showUserLikes(blog)"><i class="fa fa-thumbs-up" title="Like this post"></i></a>
+                            <a data-ng-show="showUserLikes(blog)"><i class="fa fa-thumbs-up" style="color: rgba(80, 166, 51, 0.8);" title="Unlike this post"></i></a>
+                          </div>
+                        </div>
+                        <!-- TODO: Need to change the 'classpath' so this is correctly styled -->
+                        <span class="item-body" style="color:#96a5aa;" data-ng-bind="blog.body | HTMLToText | truncate:250">
+                        </span>
+                        <span ng-if="( blog.body | HTMLToText).length >= 200"><a href="" ng-click="viewModal({blogPost:blog})"> [more]</a></span>
+                    </div>
+                    <div class="item-body">
+                        Comments: <span class="pill" data-ng-bind="blog.comments.length || 0"></span>
+                        <!-- <i class="fa fa-plus-circle" data-ng-click="addCommentModal()" style="font-size:15px;color:#4db3a4;padding:5px;" title="Add Blog"></i> -->
+                        <div class="pull-right" uib-tooltip="{{blog.likeUsers}}" tooltip-placement="left">Likes: <span data-ng-bind="blog.likesCount || 0"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

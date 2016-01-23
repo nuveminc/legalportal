@@ -1,0 +1,157 @@
+                        <!-- BEGIN PAGE CONTENT INNER -->
+                        <div class="page-content-inner">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="portlet light">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md">
+                                                <i class="fa fa-files-o font-green"></i>
+                                                <span class="caption-subject font-green bold uppercase">Document Details</span>
+                                            </div>
+                                            <div class="actions">
+                                                <i class="fa fa-plus-circle blog-icon-right" data-ng-click="main.openModalAddDocument()" style="font-size:20px;color:#4db3a4;padding:5px;" title="Add Blog"></i>
+                                            </div>                                            
+                                        </div>
+                                        <div class="portlet-body-no-padding">
+                                            <div class="laf-doc-rowdata" style="margin:10px 0;">
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Title/Description</div>
+                                                    <div class="col-xs-9" data-ng-bind="document.title">Sed justo metus, mattis ut ante id, finibus dignissim tortor. Mauris neque justo, dictum in tristique nec, rhoncus eu lacus. Curabitur vulputate justo a justo eleifend laoreet.</div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Context</div>
+                                                    <div class="col-xs-9" data-ng-bind="document.context">Sed justo metus, mattis ut ante id, finibus dignissim tortor. Mauris neque justo, dictum in tristique nec, rhoncus eu lacus. Curabitur vulputate justo a justo eleifend laoreet.</div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Document Type</div>
+                                                    <div class="col-xs-9" data-ng-bind="document.docType"></div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Group(s)</div>
+                                                    <div class="col-xs-9 row">
+                                                        <div class="col-xs-12" data-ng-repeat="item in document.groups">
+                                                            <div data-ng-bind="item"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Issue(s)</div>
+                                                    <div class="col-xs-9 row">
+                                                        <div class="col-xs-12" data-ng-repeat="item in document.issues">
+                                                            <div data-ng-bind="item"></div>
+                                                        </div>
+                                                    </div>                        
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Additional Tags</div>
+                                                    <div class="col-xs-9 row">
+                                                        <div class="col-xs-12" data-ng-repeat="item in document.taxKeywords">
+                                                            <div data-ng-bind="item | truncateTag"></div>
+                                                        </div>
+                                                    </div>                        
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">File Name</div>
+                                                    <div class="col-xs-9" ><a href="#" ng-bind="document.fileName" ng-click="openDocument(document.id)"></a></div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Submitted By</div>
+                                                    <div class="col-xs-9" ng-bind="document.submittedBy"></div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Author</div>
+                                                    <div class="col-xs-9" ng-bind="document.author"></div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Date Uploaded</div>
+                                                    <div class="col-xs-9" data-ng-bind="document.dateCreated | date: 'longDate'"></div>
+                                                </div>
+                                                <div class="row laf-doc-field-row">
+                                                    <div class="col-xs-3 laf-doc-fields">Last Review Date</div>
+                                                    <div class="col-xs-9" data-ng-bind="document.lastReviewDate | date: 'longDate'">N/A</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- BEGIN COMMENTS PORTLET-->
+                                    <div comment-portlet data="comments" add-modal="main.openModalAddComments(document.id, comments)"></div>
+                                    <!-- END COMMENTS PORTLET-->                                    
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-8 col-sm-8">
+                                        <!-- BEGIN PORTLET: WARNING -->
+                                        <div class="portlet light trim-top">
+                                            <div class="portlet-title trim-top" style="min-height: 0;">
+                                                <div class="caption caption-md">
+                                                    <i class="fa fa-warning font-green"></i>
+                                                    <span class="caption-subject font-green-sharp bold uppercase">
+                                                        Warning                                                    
+                                                    </span>
+                                                </div>                                            
+                                            </div>
+                                            <div class="portlet-body">
+                                                <!--BEGIN CONTENT-->
+                                                Sed justo metus, mattis ut ante id, finibus dignissim tortor. Mauris neque justo, dictum in tristique nec.
+                                                <!--END CONTENT-->
+                                            </div>
+                                        </div>
+                                        <!-- END PORTLET: WARNING -->
+                                        <!-- BEGIN PORTLET: WARNING -->
+                                        <div class="portlet light trim-top">
+                                            <div class="portlet-title trim-top" style="min-height: 0;">
+                                                <div class="caption">
+                                                    <i class="fa fa-eye font-green" title="Discussion Boards"></i>
+                                                    <span class="caption-subject font-green-sharp bold uppercase">
+                                                        See Also                                                    
+                                                    </span>
+                                                </div>                                            
+                                            </div>
+                                            <div class="portlet-body">
+                                                <!--BEGIN CONTENT-->
+                                                Sed justo metus, mattis ut ante id, finibus dignissim tortor. Mauris neque justo, dictum in tristique nec.
+                                                <!--END CONTENT-->
+                                            </div>
+                                        </div>
+                                        <!-- END PORTLET: WARNING -->
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <!-- BEGIN PORTLET: TOOLS -->
+                                        <div class="portlet light trim-top">
+                                            <div class="portlet-title trim-top" style="min-height: 0;">
+                                                <div class="caption">
+                                                    <i class="fa fa-warning font-green"></i>
+                                                    <span class="caption-subject font-green-sharp bold uppercase">
+                                                        Tools                                                    
+                                                    </span>
+                                                </div>                                            
+                                            </div>
+                                            <div class="portlet-body">
+                                                <!--BEGIN CONTENT-->
+                                                TBD
+                                                <!--END CONTENT-->
+                                            </div>
+                                        </div>
+                                        <!-- END PORTLET: TOOLS -->
+                                        <!-- BEGIN PORTLET: FEEDBACK -->
+                                        <!-- <div class="portlet light trim-top">
+                                            <div class="portlet-title trim-top" style="min-height: 0;">
+                                                <div class="caption">
+                                                    <i class="fa fa-warning blog-icon-left"></i>
+                                                    <span class="caption-subject font-green-sharp bold uppercase">
+                                                        Feedback                                                    
+                                                    </span>
+                                                </div>                                            
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="col-xs-12 ">
+                                                    <i class="fa fa-wrench blog-icon-left" title="Discussion Boards"></i>
+                                                    <a href="">Add to My Stuff</a>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <!-- END PORTLET: FEEDBACK -->                                    
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT INNER -->

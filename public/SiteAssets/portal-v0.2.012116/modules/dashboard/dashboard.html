@@ -1,0 +1,34 @@
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="page-content-inner">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div blog-portlet data="dashboard.blogPosts" add-modal="main.openModalAddBlogPost()" view-modal="main.openModalViewBlogPosts(blogPosts, blogPost)">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <!-- BEGIN EVENTS PORTLET-->
+                <div event-portlet data="dashboard.events" add-modal="main.openModalAddEvent()" view-modal="main.openModalViewEvents(events, category)"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <!-- BEGIN TWITTER PORTLET-->
+                <div>
+                    <div twitter-portlet></div>                    
+                </div>
+                <!-- END TWITTER PORTLET-->
+            </div>
+            <div class="col-md-4 col-sm-4" style="display:none;">
+                <!-- BEGIN DOCUMENT PORTLET-->
+                <div document-portlet data="dashboard.documents" add-modal="main.openModalAddDocument()"></div>
+            </div>                                
+            <div class="col-md-8 col-sm-8">
+                <div discussion-portlet  
+                    posts="dashboard.allDiscussionPosts" 
+                    boards="dashboard.discussionBoards"
+                    add-modal="main.openModalAddDiscussion(boards)"
+                    view-modal="main.openModalViewDiscussions(post)"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT INNER -->

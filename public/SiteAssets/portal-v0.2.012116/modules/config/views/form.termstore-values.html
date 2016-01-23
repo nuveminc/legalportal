@@ -1,0 +1,51 @@
+<!-- form-values.html -->
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<div>
+			<h3>Termstore Configuration Settings</h3>
+			<div>You will need to configure your Site Collection Term Store before you complete this section.</div>
+			<div>To do this you will need to create a new Term Store along with the following Term Sets - these are the base Taxonomy termsets that have been established.</div> 
+			<div>After you have created the following Term Sets, you can create any number of DocTypes, Groups, or Issues.</div>
+			<h4>Default Term Sets</h4>
+			<ul>
+				<li>DocType (no space in name)</li>
+				<li>Groups</li>
+				<li>Issues</li>
+			</ul>
+			<div>To obtain the GUID, navigate to the Term Store or Term Set page. The Unique Identifier (GUID) is located at the bottom of the page.</div>
+			<div><img src="/SiteAssets/portal-v0.2.012116/lib/images/config/termstore-unique-identifier.png"></div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="name">Term Store GUID</label>
+		    <input type="text" class="form-control" name="name" ng-model="formData.name" placeholder="e.g. Seattle">
+		    <div>Your Term Store Collection Id can be obtained from the <a href="https://twitter.com/settings/widgets" target="_blank">Twitter Widgets</a> page (login to access)</div>
+		</div>
+
+		<div class="form-group">
+		    <label for="email">DocType GUID</label>
+		    <input type="text" class="form-control" name="email" ng-model="formData.email" placeholder="e.g. ReutersTech">
+		    <div>Your Term Set DocType GUID can be obtained from the <a href="https://twitter.com/settings/widgets" target="_blank">Twitter Widgets</a> page (login to access)</div>
+		</div>
+
+		<div class="form-group">
+		    <label for="email">Groups GUID</label>
+		    <input type="text" class="form-control" name="email" ng-model="formData.email" placeholder="e.g. 685274550158753792">
+		    <div>Your Term Set Groups GUID can be obtained from the <a href="https://twitter.com/settings/widgets" target="_blank">Twitter Widgets</a> page (login to access)</div>
+		</div>	
+
+		<div class="form-group">
+		    <label for="email">Issues GUID</label>
+		    <input type="text" class="form-control" name="email" ng-model="formData.email" placeholder="e.g. 685274550158753792">
+		    <div>Your Term Set Issues GUID can be obtained from the <a href="https://twitter.com/settings/widgets" target="_blank">Twitter Widgets</a> page (login to access)</div>
+		</div>	
+	</div>
+</div>
+
+<div class="form-group row">
+<div class="col-xs-3 col-xs-offset-6">
+    <a ui-sref="form.interests" class="btn btn-block btn-info">
+    Finish <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>

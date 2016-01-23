@@ -1,0 +1,21 @@
+﻿<div id="modal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" style="text-align:right;">×</button>
+        <h3 class="modal-title">Add Comment</h3>
+    </div>
+    <div class="modal-body" style="overflow-y:visible;">
+        <table class="table">
+            <tr>
+                <td class="col-md-10"><textarea rows="10" ng-model="comment.body" ng-required="true" class="form-control" placeholder="Add Comments"  /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <span class="error-text pull-left" data-ng-show="!form.isValid"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<span data-ng-bind="form.error.message"></span></span>
+        <span class="pull-left" data-ng-show="form.isSaving"><span class="laf-spinner"></span><span class="progress-text" data-ng-bind="form.progress.message"></span></span>
+        <!-- messaging directive -->
+        <!--<span modal-messaging="" data-show-error="!form.isValid" data-show-message="form.isSaving" data-error-message="form.error.message" data-progress-message="form.progress.message" data-is-sticky="form.isSticky"></span>-->
+        <button class="btn btn-warning" data-ng-click="modal.cancel()" ng-disabled="false">Close</button>
+        <button class="btn btn-success" data-ng-click="modal.save()" ng-disabled="false">Save</button>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿
+ <div id="modal">
+    <div class="modal-header">
+        <button type="button" class="laf-modal-close pull-right" ng-click="modal.cancel()"></button>
+        <h3 class="modal-title">{{post.subject}}</h3>
+        <h4 class="modal-title">Discussion Board: {{post.board.title}}</h4>
+    </div>
+    <div class="modal-body">
+        <h5><span>{{post.dateCreated | dayDateTime }}</span><span style="padding-left:30px;">Posted by: {{post.author}}</span></h5>
+        <hr />
+        <div data-ng-bind-html="post.body | noDescription | getCharCode"></div>
+        <hr />
+        <!-- added for replies -->
+        <div data-ng-hide="isReplying">
+            <div>
+                <h4 style="padding: 5px; background-color:#D7DCE2;">
+                    Replies: <span data-ng-bind="post.replies.length"></span>
+                    &nbsp; <span style="font-size:12px;">(scroll down to see all replies)</span>
+                </h4>
+            </div>
+            <div class="scroll-body" slimscroll="{height: '300px', 'color': '#D7DCE2'}" style="height:300px;">        
+                <div ng-repeat="reply in post.replies">
+                    <h5><span>{{reply.dateCreated | date: 'short'}}</span><span style="padding-left:30px;">Reply by: {{reply.author}}</span></h5>
+                    <hr />
+                    <div data-ng-bind-html="reply.body | noDescription | getCharCode"></div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <!-- end added for replies -->
+        <div class="btn btn-success" data-ng-click="reply()" data-ng-disabled="false" data-ng-show="!isReplying">Reply</div>
+        <div class="row">
+        <div class="col-xs-12" data-ng-show="isReplying">
+            <div class="col-xs-12">
+                    Add Reply:
+                </div>
+                <div class="col-xs-12" text-angular ta-toolbar="customToolbar" ng-model="post.reply" ta-file-drop="post.reply.fileDrop"></div>
+            </div>            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="error-text pull-left" data-ng-show="!form.isValid"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;<span data-ng-bind="form.error.message"></span></span>
+        <span class="pull-left" data-ng-show="form.isSaving"><span class="laf-spinner"></span><span class="progress-text" data-ng-bind="form.progress.message"></span></span>
+        <div class="btn btn-warning" data-ng-click="isReplying = false" data-ng-show="isReplying">Cancel</div>
+        <div class="btn btn-warning" data-ng-click="modal.cancel()" data-ng-disabled="false" >Close</div>
+        <div class="btn btn-primary" data-ng-click="modal.save(true)" data-ng-disabled="false" data-ng-show="isReplying">Save</div>
+    </div>
+</div>

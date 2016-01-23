@@ -1,0 +1,14 @@
+    <div class="item-head">
+        <div class="item-details" style="margin-top:-8px;">
+            <a href="" data-ng-click="viewModal()" class="item-name primary-link" >
+                <span class="badge badge-empty" data-ng-class="'laf-badge-' + event.category.toLowerCase()" style="padding-right:10px;height:12px;width:12px;"></span>
+                <span data-ng-bind="event.title | getCharCode"></span>
+            </a>
+        </div>
+    </div>
+    <div class="item-body" data-ng-bind="event.description | noDescription | getCharCode | HTMLToText | truncate: 150">
+    </div>
+    <div class="" style="font-style:italic;">
+        Location: <span data-ng-bind="event.location | truncate:22"></span>
+        <span class="pull-right" data-ng-bind="event.eventDate | dayDateTime"></span>
+    </div>
