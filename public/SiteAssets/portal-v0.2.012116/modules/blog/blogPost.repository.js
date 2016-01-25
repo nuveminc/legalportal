@@ -1,11 +1,11 @@
 
-LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider', 'authorization', function ($timeout, $filter, dataProvider, authorization) {
+LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider', 'authorization', 'BASE_PATH', function ($timeout, $filter, dataProvider, authorization, BASE_PATH) {
     'use strict';
      var self = this,
         BlogPostModel = function(){
             this.name = 'blogs';
             this.listName = 'Posts';
-            this.siteUrl = '/Blog';
+            this.siteUrl = BASE_PATH.subsiteUrl + 'Blog';
             this.fields = [
                 { name: 'id', spField: 'Id' }
                 , { name: 'title', spField: 'Title' }
@@ -20,12 +20,13 @@ LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider'
                 , { name: 'created', spField: 'Created' }
                 , { name: 'authorId', spField: 'AuthorId' }
                 , { name: 'editor', spField: 'Editor' }
-            ];
+            ],
+            this.filter = '?$orderby=Created%20desc';
         },
         CategoryModel = function () {
             this.name = 'Blog Categories';
             this.listName = 'Categories';
-            this.siteUrl = '/Blog';
+            this.siteUrl = BASE_PATH.subsiteUrl + 'Blog';
             this.fields = [
                 { name: 'id', spField: 'Id' }
                 , { name: 'title', spField: 'Title' }
@@ -37,7 +38,7 @@ LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider'
         CommentModel = function () {
             this.name = 'Blog Comments';
             this.listName = 'Comments';
-            this.siteUrl = '/Blog';
+            this.siteUrl = BASE_PATH.subsiteUrl + 'Blog';
             this.fields = [
                 { name: 'id', spField: 'ID' }
                 //, { name: 'contentTypeId', spField: 'ContentTypeId', readOnly: true }
@@ -53,7 +54,7 @@ LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider'
         ImageModel = function () {
             this.name = 'Blog Image';
             this.listName = 'Photo';
-            this.siteUrl = '/Blog';
+            this.siteUrl = BASE_PATH.subsiteUrl + 'Blog';
             this.fields = [
                 { name: 'author', spField: 'Author' }
                 , { name: 'checkInComment', spField: 'CheckInComment' }
@@ -174,7 +175,6 @@ LegalPortal.service('blogPostRepository', ['$timeout', '$filter', 'dataProvider'
         return dataProvider.blog.getPosts(new BlogPostModel()).done(function (responseData) {
             // reverse order of blog posts to put last in first
             if (responseData.length > 0) {
-                responseData.reverse();
                 responseData.forEach(function (d) {
                     setCategory(d);
                     setAuthor(d);

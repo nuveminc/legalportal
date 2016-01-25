@@ -1,7 +1,7 @@
 ﻿
 LegalPortal.service('eventRepository', 
-	['$timeout', 'dataProvider', '$filter', 
-	function ($timeout, dataProvider, $filter) {
+	['$timeout', 'dataProvider', '$filter', 'BASE_PATH',
+	function ($timeout, dataProvider, $filter, BASE_PATH) {
     'use strict';
     var self = this,
 		eventTypes = [
@@ -11,6 +11,7 @@ LegalPortal.service('eventRepository',
 		],
 		EventModel = function () {
 		    this.name = 'events',
+		    this.siteUrl = BASE_PATH.subsiteUrl,
             this.listName = 'Events',
             this.fields = [
             	{ name: 'participantsPicker', spField: 'ParticipantsPicker', dataSvc: null }

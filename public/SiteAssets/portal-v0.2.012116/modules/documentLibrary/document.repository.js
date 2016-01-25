@@ -1,7 +1,7 @@
 ﻿
 LegalPortal.service('documentRepository',
-    ['$timeout', 'authorization', 'dataProvider', 'TERMSTORE', 
-    function($timeout, authorization, dataProvider, TERMSTORE){
+    ['$timeout', 'authorization', 'dataProvider', 'TERMSTORE', 'BASE_PATH',
+    function($timeout, authorization, dataProvider, TERMSTORE, BASE_PATH){
     'use strict';
     var self = this,
         loadHandler = function () { },
@@ -18,6 +18,7 @@ LegalPortal.service('documentRepository',
         DocumentModel = function (id) {
             this.data = {};
             this.name = 'documents';
+		    this.siteUrl = BASE_PATH.subsiteUrl,
             this.listName = 'Documents';
             this.fields = [
                 { name: 'id', spField: 'ID' }

@@ -1,12 +1,13 @@
 ﻿
 LegalPortal.service('discussionRepository', 
-	['$timeout', '$filter', 'dataProvider', 
-	function ($timeout, $filter, dataProvider) {
+	['$timeout', '$filter', 'dataProvider', 'BASE_PATH', 
+	function ($timeout, $filter, dataProvider, BASE_PATH) {
     'use strict';
     var self = this,
         loadHandler = function () { },
 		DiscussionModel = function(){
 		    this.name = 'discussions',
+		    this.siteUrl = BASE_PATH.subsiteUrl,
             this.listName = '',
             this.method = 'REST',
             this.fields = [

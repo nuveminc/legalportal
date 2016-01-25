@@ -2,6 +2,9 @@
 var rootUrl = '/SiteAssets/portal-v0.2.012116';
 
 LegalPortal.constant('BASE_PATH', {
+    // name of subsite (leave trailing '/' e.g. /LegalPortal/)
+    subsiteUrl:             '/',
+    // DO NOT CHANGE THESE VALUES
     modulesUrl:             rootUrl + '/modules/',
     dataUrl:                rootUrl + '/data/',
     pageUrl:                rootUrl + '/app/',

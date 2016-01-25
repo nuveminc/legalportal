@@ -1,11 +1,12 @@
 ﻿
 LegalPortal.service('workgroupsRepository', 
-    ['dataProvider', 'authorization', 
-    function (dataProvider, authorization) {
+    ['dataProvider', 'authorization', 'BASE_PATH',
+    function (dataProvider, authorization, BASE_PATH) {
     var self = this,
         PageModel = function (name) {
             this.data = {};
             this.name = 'workgroup';
+		    this.siteUrl = BASE_PATH.subsiteUrl,
             this.listName = 'Workgroups';
             this.fields = [
                 { name: 'id', spField: 'ID' }

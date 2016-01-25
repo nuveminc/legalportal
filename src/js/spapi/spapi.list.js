@@ -15,8 +15,6 @@
         var pageSize = '$skip={0}'.format(MAX_ITEMS);
 
         // check for a subsite url - if we don't have one then set to ''
-        // TODO: more robust handling is needed - is the siteUrl prefixed with '/' or not?
-        //      and does it have a trailing '/' or not?
         model.siteUrl = (model.siteUrl) ? model.siteUrl : '';
 
         // check for an ODataFilter object - we can simply get the query from this
@@ -34,16 +32,18 @@
                 filter = model.filter;
             }
         }
-
+        
         // get the model count - if a string then assume 'all' and get all records
-        var apiUrl = '{0}/_api/Web/Lists/getByTitle(\'{1}\')/Items'.format(model.siteUrl, model.listName) + filter;
-        var svcUrl = '{0}/_vti_bin/ListData.svc/{1}'.format(model.siteUrl, model.listName) + filter;
+        var apiUrl = '{0}/_api/Web/Lists/getByTitle(\'{1}\')/Items';
+        var svcUrl = '{0}/_vti_bin/ListData.svc/{1}';
 
+        // TODO: need this to be more robust checking for dataSvc
         if (filter.indexOf('datetime') > -1) {
-            url = svcUrl;
+	        model.siteUrl = (model.siteUrl.lastIndexOf('/') === model.siteUrl.length - 1) ? model.siteUrl.substr(0, model.siteUrl.length -1) : model.siteUrl;
+            url = svcUrl.format(model.siteUrl, model.listName) + filter;
             model.type = 'dataSvc';
         } else {
-            url = apiUrl;
+            url = apiUrl.format(model.siteUrl, model.listName) + filter;
         }
 
         var options = new GETOptions(url);

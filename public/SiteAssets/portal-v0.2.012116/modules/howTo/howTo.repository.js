@@ -1,11 +1,12 @@
 LegalPortal.service('howToRepository',
-    ['$timeout', 'authorization', 'dataProvider', 
-    function($timeout, authorization, dataProvider){
+    ['$timeout', 'authorization', 'dataProvider', 'BASE_PATH', 
+    function($timeout, authorization, dataProvider, BASE_PATH){
     'use strict';
     var self = this,      
     DocumentModel = function (id) {
         this.data = {};
         this.name = 'howTo';
+	    this.siteUrl = BASE_PATH.subsiteUrl,
         this.listName = 'HowTo';
         this.fields = [
             { name: 'id', spField: 'Id' }
