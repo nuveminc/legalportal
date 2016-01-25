@@ -15,7 +15,13 @@ the out-of-the-box User Interface (UI) provided by SharePoint and was developed 
 a modular application framework to allow extensible "portlets" to be developed and 
 added to the core set of features. 
 
-Architecture
+SharePoint Version Support
+---------------
+This beta version supports both SharePoint 2013 On-Premises and SharePoint Online 
+(Office 365). The **Set-Up** section below is the same for both hosted versions.
+ 
+
+Application Architecture
 ---------------
 The portal architecture consists of SharePoint as the platform to provide core 
 services consisting of the following:
@@ -35,7 +41,7 @@ Technology frameworks used are:
 - AngularJS
 - Twitter Bootstrap
 
-System Design
+Application Design
 --------
 Open source framework technologies are used with SharePoint in a novel way. 
 Rather than implementing the custom interfaces as master pages and web parts 
@@ -89,7 +95,27 @@ You can change the display name by changing the name **after** you have created 
 
 You will now need to make some changes to the code to customize your specific instance of this portal. The following files can be edited using SharePoint Designer (SPD) or you can edit the files outside SP and drag them into the correct folder using SPD.
 
-> [root]/SiteAssets/portal/config/portal.config.js
+**Portal Configuration Variables**
+
+[root]/SiteAssets/portal/config/portal.config.js
+
+Update "subsiteUrl" value if you are using a subsite (e.g. [root]/subsite/)
+```
+LegalPortal.constant('BASE_PATH', {
+    // name of subsite (leave trailing '/' e.g. /LegalPortal/)
+    subsiteUrl:             '/',
+    // DO NOT CHANGE THESE VALUES
+    modulesUrl:             rootUrl + '/modules/',
+    dataUrl:                rootUrl + '/data/',
+    pageUrl:                rootUrl + '/app/',
+    portletUrl:             rootUrl + '/global/directives/portlets/',
+    images:                 rootUrl + '/lib/images/',
+    globalDirectivesUrl:    rootUrl + '/global/directives/',
+    globalModalsUrl:        rootUrl + '/global/modals/'
+});
+```
+
+Update the below values to change the Weather and Twitter Portlets 
 ```
 LegalPortal.constant('PORTLET', {
     weatherCity: 'Seattle',
@@ -97,6 +123,9 @@ LegalPortal.constant('PORTLET', {
     twitterId: '685274550158753792'
 });
 ```
+
+Update the below values to point to your Termstore
+
 ```
 Portal.constant('TERMSTORE', {
     // GUID of the Site Collection termstore
