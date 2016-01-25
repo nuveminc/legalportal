@@ -83,7 +83,10 @@ You can change the display name by changing the name **after** you have created 
 
 >Also note that [root] refers to the "Site Collection" you are using
 
- 1. Copy the entire file folder (portal) into [root]/SiteAssets in SP ([root]/SiteAssets/portal) 
+> The "portal" folder referenced below refers to the current versioned folder
+that is in the repo (e.g. portal-v0.2.012116)  
+
+ 1. Copy the entire file folder (portal) into [root]/SiteAssets in SP ([root]/SiteAssets/portal-v0.2.012116) 
  2. Copy the file LegalPortal.aspx into [root]/Site Pages in SP ([root]/Site Pages/LegalPortal.aspx)
  3. Create a Blog sub-site named "Blog" ([root]/Blog)
  4. Create a new Calendar list named "Events" ([root]/Events)
