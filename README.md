@@ -74,7 +74,7 @@ new directive or modify or extend an existing one and place it in the view.
 
 Set-up
 --------
-You can either clone the files from this repo or visit [LegalPortal download](http://nuveminc.com/legalportal/download) to download the files.
+You can either clone the files from this repo or download the files as a zip file.
 Once you have the files, you will need to perform some SP configuration.
 The easiest way to play with this beta is to create a new Site Collection since you will need to create a Blog sub-site and a few lists and libraries to support the application. You can use an existing site, but be aware you will be creating new lists and libraries.
 
