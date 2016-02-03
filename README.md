@@ -3,7 +3,7 @@
 
 LegalPortal is a SharePoint-based application that utilizes SharePoint (SP) as 
 the base platform for an intranet portal. The current release is in beta and 
-requires some initial configuration which is described in the **Set-Up** section 
+requires some initial configuration which is described in the [Set-Up](#set-up) section 
 below.
 
 This project is the result of a number of portal projects developed for various 
