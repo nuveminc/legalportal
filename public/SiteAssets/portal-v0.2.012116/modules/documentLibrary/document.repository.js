@@ -38,7 +38,7 @@ LegalPortal.service('documentRepository',
                 , { name: 'fileName', spField: 'Name' }
             ],
             this.filter = '?$orderby=Created%20desc';
-        }, 
+        },
         CommentModel = function(documentId){
             this.data = {};
             this.name = 'documentComments';
@@ -53,7 +53,7 @@ LegalPortal.service('documentRepository',
             ],
             this.filter = '?$filter=DocumentId eq \'{0}\''.format(documentId);
         },
-        SearchResultsModel = function (results) {            
+        SearchResultsModel = function (results) {
             this.fields = [
                 { name: 'docId', spField: 'DocId' }
                 , { name: 'title', spField: 'Title' }
@@ -69,7 +69,7 @@ LegalPortal.service('documentRepository',
                 , { name: 'docType', spField: 'owstaxIdDocType', filter: taxFilter }
                 , { name: 'groups', spField: 'owstaxIdGroups', filter: taxFilter }
                 , { name: 'issues', spField: 'owstaxIdIssues', filter: taxFilter }
-            ]           
+            ]
         },
         addRefinementItem = function(category, item){
             if(self[category] && item[category].length > 0){
@@ -77,16 +77,16 @@ LegalPortal.service('documentRepository',
                 if(refinement.length > 0){
                     var refinementItem = refinement.forEach(function(r){
                         return r.label === item[category];
-                    }); 
+                    });
                     if(refinementItem && refinementItem.length > 0){
-                        refinementItem.count++;                 
+                        refinementItem.count++;
                     } else {
-                        refinement.push({ category: category, label: item[category], count: 1 });                       
+                        refinement.push({ category: category, label: item[category], count: 1 });
                     }
                 } else {
-                    refinement.push({ category: category, label: item[category], count: 1 });                       
+                    refinement.push({ category: category, label: item[category], count: 1 });
                 }
-            }                       
+            }
         },
         convertModelData = function(result){
             var model = new SearchResultsModel();
@@ -102,13 +102,13 @@ LegalPortal.service('documentRepository',
                                     addRefinementItem(field.name, item);
                                 }
                             }else{
-                                item[field.name] = result[prop];                                    
+                                item[field.name] = result[prop];
                             }
                         }
                     });
                 });
                 $timeout(function(){
-                    self.searchResults.rows.push(item);                 
+                    self.searchResults.rows.push(item);
                 });
             }
         },
@@ -116,15 +116,15 @@ LegalPortal.service('documentRepository',
         termSetItems = ['docType', 'group', 'issues', 'taxKeywords'],
 
         MetaDataObject = function (item) {
-            this.__metadata = { 
-                type:'SP.Taxonomy.TaxonomyFieldValue' 
-            }, 
+            this.__metadata = {
+                type:'SP.Taxonomy.TaxonomyFieldValue'
+            },
             this.Label = item.label || '';
             this.TermGuid = item.guid || '';
-            this.WssId =-1 
+            this.WssId =-1
         },
 
-        
+
         formatMetadata = function (data, mmobj, multivalueset) {
             var metadataObject = new MetaDataObject(mmobj);
             if (mmobj.termset === 'issues' || mmobj.termset === 'group' || mmobj.termset === 'taxKeywords') {
@@ -136,7 +136,7 @@ LegalPortal.service('documentRepository',
                 data[mmobj.termset] = metadataObject;
             }
             return data;
-        }, 
+        },
         setDocType = function (doc) {
             // need to convert document.docType from SP-object to valid label
             if(doc.docType && doc.docType.TermGuid){
@@ -146,7 +146,7 @@ LegalPortal.service('documentRepository',
                     }
                 });
             }
-        },        
+        },
         setProperties = function(doc) {
             var props = ['issues', 'groups', 'taxKeywords'];
             props.forEach(function (property) {
@@ -156,7 +156,7 @@ LegalPortal.service('documentRepository',
                         doc[property].results.forEach(function (item) {
                             items.push(item.Label);
                         });
-                        doc[property] = items.join(', ');       
+                        doc[property] = items.join(', ');
                     } else {
                         doc[property] = '';
                     }
@@ -178,12 +178,12 @@ LegalPortal.service('documentRepository',
                     });
                 }
             });
-                               
-            // load all taxonomy values 
+
+            // load all taxonomy values
             self.loadTaxonomy(TERMSTORE.TERMSETS).done(function(allTerms){
                 self.taxonomyCache = allTerms;
                 console.log('all terms: %o', allTerms);
-                // we can now update all documents 
+                // we can now update all documents
                 self.documentCache.forEach(function(d){
                     // we can map the properties using the taxonomy values
                     setDocType(d);
@@ -191,42 +191,42 @@ LegalPortal.service('documentRepository',
                 });
             });
         };
-        
+
     self.taxonomyCache = [];
     self.documentCache = [];
     self.documentGrid = [];
     self.searchResults = searchResults;
-    self.docType = [];
-    self.groups = [];
-    self.issues = [];
-    
+    self.docType;
+    self.groups;
+    self.issues;
+
     self.getMetadataFields = function () {
         return dataProvider.getMetadataFields();
     }
-        
+
     self.getDocuments = function (documents) {
         return dataProvider.getLibraryFiles(new DocumentModel);
     };
 
     self.search = function (keywords) {
         console.log('documentReposiroty.searched called: %o', keywords);
-        // intialize cached values      
+        // intialize cached values
         self.searchResults.totalRows = 0;
         self.searchResults.rows.length = 0;
         self.docType.length = 0;
         self.groups.length = 0;
         self.issues.length = 0;
 
-        dataProvider.search(keywords).done(function (results) {       
+        dataProvider.search(keywords).done(function (results) {
             console.log('dataProvider.search results: %o', results);
             if(results.d.postquery.PrimaryQueryResult){
                 var relevantResults = results.d.postquery.PrimaryQueryResult.RelevantResults,
                     items = [];
-    
+
                 // set total rows
                 self.searchResults.totalRows = relevantResults.TotalRows;
                 self.searchResults.keywords = keywords;
-                
+
                 // loop through rows in table
                 relevantResults.Table.Rows.results.forEach(function (row) {
                     var item = {};
@@ -239,11 +239,11 @@ LegalPortal.service('documentRepository',
             }
         });
     };
-    
+
     var mapComments = function(){
-    
+
     };
-    
+
     self.saveComment = function(comment, documentId, parentId){
         var deferred = $.Deferred();
         var model = new CommentModel();
@@ -257,7 +257,7 @@ LegalPortal.service('documentRepository',
         return deferred.promise();
     };
 
-    
+
     self.getComments = function(documentId){
         var model = new CommentModel(documentId);
         return dataProvider.getComments(model);
@@ -286,11 +286,12 @@ LegalPortal.service('documentRepository',
         return dataProvider.library.uploadItem(siteUrl, file, libraryName, model, folderName);
     };
 
-    self.updateItem = function (data, libraryName) {
-        var model = new DocumentModel();        
+    self.updateItem = function (siteUrl, data, libraryName) {
+        var model = new DocumentModel();
         model.data = data;
+        model.siteUrl = siteUrl;
         model.listName = libraryName || model.listName;
-        
+
         console.log('model.data: %o', model.data)
         return dataProvider.library.updateItem(model);
     };
@@ -306,7 +307,7 @@ LegalPortal.service('documentRepository',
     self.addNewTerm = function (termName, termSetId) {
         return dataProvider.addNewTerm(termName, termSetId);
     };
-    
+
     self.loadTaxonomy = function (termSets) {
         return dataProvider.loadTaxonomy(termSets);
     };
@@ -314,7 +315,7 @@ LegalPortal.service('documentRepository',
     self.registerLoadHandler = function (cb) {
         loadHandler = cb;
     };
-    
+
     init();
 
 }]);
