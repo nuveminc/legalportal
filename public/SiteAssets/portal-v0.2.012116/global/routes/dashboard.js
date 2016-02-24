@@ -1,22 +1,26 @@
 
 LegalPortal.config(['$stateProvider', '$urlRouterProvider', 'BASE_PATH',
     function ($stateProvider, $urlRouterProvider, BASE_PATH) {
-    'use strict';         
- 
+    'use strict';
+
     var baseUrl = BASE_PATH.modulesUrl;
 
     $stateProvider
-        .state('dashboard', {
-            url: '/dashboard',
-            templateUrl: baseUrl + 'dashboard/dashboard.html',
-            controller: 'dashboardController'
-        })
+      .state('/', {
+          url: '/dashboard',
+          templateUrl: baseUrl + 'dashboard/dashboard.html',
+          controller: 'dashboardController'
+      })
 
-        .state('howTo', {
-            url: '/howto',
-            templateUrl: baseUrl + 'howTo/howTo.html',
-            controller: 'howToController'
-        }); 
+      .state('dashboard', {
+          url: '/dashboard',
+          templateUrl: baseUrl + 'dashboard/dashboard.html',
+          controller: 'dashboardController'
+      })
+
+      .state('howTo', {
+          url: '/howto',
+          templateUrl: baseUrl + 'howTo/howTo.html',
+          controller: 'howToController'
+      });
 }]);
-
- 
