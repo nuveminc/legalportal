@@ -1,6 +1,6 @@
 ﻿
-LegalPortal.controller('documentModalController', ['$scope', '$timeout', '$q', '$modalInstance', 'documentRepository', 'item', 'TERMSTORE', 'DOCUMENT_LIBRARY', 'Upload', 
-function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocument, TERMSTORE, DOCUMENT_LIBRARY, Upload) {
+LegalPortal.controller('documentModalController', ['$scope', '$timeout', '$q', '$modalInstance', 'documentRepository', 'item', 'BASE_PATH', 'TERMSTORE', 'DOCUMENT_LIBRARY', 'Upload',
+function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocument, BASE_PATH, TERMSTORE, DOCUMENT_LIBRARY, Upload) {
     'use strict';
     var self = this,
         setDocMetadataFields = function (docMetadata) {
@@ -39,7 +39,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
                             foundIssues.push(iv);
                         }
                     });
-                });                
+                });
             }
             return foundIssues;
         },
@@ -62,7 +62,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
             }
             return document;
         };
-        
+
 
     var docTypeValues = [
         'Brief/Memorandum',
@@ -85,8 +85,8 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
         'Trial',
         'Video'
     ],
-    
-    /*groupValues = [
+
+    groupValues = [
         'Accounting ＆ Finance',
         'Administration ＆ Support',
         'Children ＆ Families',
@@ -102,8 +102,8 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
         'Public Benefits',
         'Training',
         'Volunteer/Pro Bono Services'
-    ],*/
-        
+    ],
+
     issueValues = [
         { issue: 'Donated Services', group: 'Accounting ＆ Finance' },
         { issue: 'Financial Statements', group: 'Accounting ＆ Finance' },
@@ -204,10 +204,9 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
 
     // initialize $scope.document
     $scope.document = {
-        docTypes: docTypeValues,
-        allGroups: documentRepository.taxonomyCache.Groups,
-        //allGroups: groupValues,
-        allIssues: issueValues,
+        docTypes: documentRepository.taxonomyCache.docTypes || docTypeValues,
+        allGroups: documentRepository.taxonomyCache.groups || groupValues,
+        allIssues: documentRepository.taxonomyCache.issues || issueValues,
         docType: '',
         groups: [],
         issues: []
@@ -221,8 +220,8 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
         // gets all issues for each group
         $scope.document.groups.forEach(function (g) {
             console.log('loop: %o', g);
-            filteredIssues = issueValues.filter(function (i) {
-                return i.group == g.name;
+            filteredIssues = $scope.document.allIssues.filter(function (i) {
+                return i.group == g;
             });
             // collect all filteredIssues in issueGroups array
             filteredIssues.forEach(function (i) {
@@ -234,7 +233,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
         fullList.forEach(function (fl) {
             var count = 0;
             $scope.document.groups.forEach(function (ig) {
-                if (fl.group !== ig.name) {
+                if (fl.group !== ig) {
                     count++;
                 }
             });
@@ -340,10 +339,10 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
             // map taxonomy keywords into an array
             var taxKeywordSet = [];
             // copy the document manully - can't use angular.copy().
-            // NG throws here for some reason? 
+            // NG throws here for some reason?
             // TODO: break out just the document from the modal properties
             var document = copyDocument($scope.document);
-            
+
             // check for keywords
             if (!isUndefined(document.taxKeywords)) {
                 if (document.taxKeywords.indexOf(',') > 0) {
@@ -355,10 +354,10 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
                 }
                 taxKeywordSet = taxKeywordSet.map(function (m) { return m.trim(); });
             }
-    
+
             // explicitly digest the values so the ui updates
             $timeout(function () {
-            
+
                 // save to API
                 $scope.form.isSaving = true;
                 $scope.form.progress.message = 'Saving, please wait...';
@@ -389,7 +388,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
                 }
                 // otherwise we can directly update the document
                 else {
-                    // if we're not updating the document 
+                    // if we're not updating the document
                     // then we need to upload it
                     if (!$scope.isUpdating){
                         documentUpload();
@@ -421,7 +420,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
                         $scope.form.progress.message = 'Uploading document ... please wait.';
                     });
                     // upload the file
-                    documentRepository.uploadItem('', file, DOCUMENT_LIBRARY.NAME)
+                    documentRepository.uploadItem(BASE_PATH.subsiteUrl, file, DOCUMENT_LIBRARY.NAME)
                         .done(saveFile(document, deferred))
                         .fail($scope.form.failure);
                 }
@@ -470,7 +469,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
                         // set title to be filename w/out extension
                         updateDoc.title = returnDoc.data.name.replace(/\.[^/.]+$/, '');
                     }
-                    documentRepository.updateItem(updateDoc)
+                    documentRepository.updateItem(BASE_PATH.subsiteUrl, updateDoc)
                         .done(setMetadata(document, metadata, deferred))
                         .fail($scope.form.failure)
                 }
@@ -479,7 +478,7 @@ function ($scope, $timeout, $q, $modalInstance, documentRepository, updateDocume
             setMetadata = function (document, metadata, deferred) {
                 return function (doc) {
                     console.log('document fields saved: %o', doc);
-                    // updates the metadata term fields                           
+                    // updates the metadata term fields
                     setDocMetadataFields(metadata)
                         .done(updateUI(doc, document, metadata, deferred))
                         .fail($scope.form.failure);
