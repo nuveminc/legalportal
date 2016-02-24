@@ -4,24 +4,24 @@
             <div class="caption">
                 <i class="fa fa-calendar-o font-green"></i>
                 <span class="caption-subject font-green-sharp bold uppercase">
-                    Events                
+                    Events
                 </span>
             </div>
             <div class="actions">
-                <i class="fa fa-refresh" 
+                <i class="fa fa-refresh"
                     style="font-size:20px;color:#4db3a4;padding:5px;"
-                    data-ng-click="portlet.refresh()" 
-                    uib-popover="Refresh" 
-                    popover-trigger="mouseenter"                    
+                    data-ng-click="portlet.refresh()"
+                    uib-popover="Refresh"
+                    popover-trigger="mouseenter"
                     title="Refresh"></i>
 
-                <i class="fa fa-plus-circle" 
+                <i class="fa fa-plus-circle"
                     data-ng-click="addModal({events: events, category: category})"
-                    uib-popover="Add Post" 
-                    popover-trigger="mouseenter"                    
-                    style="font-size:20px;color:#4db3a4;padding:5px;" 
+                    uib-popover="Add Event" 
+                    popover-trigger="mouseenter"
+                    style="font-size:20px;color:#4db3a4;padding:5px;"
                     title="Add Event"></i>
-            </div>                                             
+            </div>
             <ul class="nav nav-tabs">
                 <li style="border-bottom: 4px solid #55616f;">
                     <a href="#tab_1_0" class="active" data-toggle="tab"> All </a>
@@ -34,7 +34,7 @@
                 </li>
                 <li style="border-bottom: 4px solid rgba(51, 118, 166, 0.8);">
                     <a href="#tab_1_3" data-toggle="tab"> Training </a>
-                </li>                                                 
+                </li>
             </ul>
         </div>
         <div class="portlet-body" data-ng-hide="portlet.listExists">
@@ -61,7 +61,7 @@
             		</ul>
             	</li>
         	</ul>
-        	
+
         </div>
         <div class="portlet-body" data-ng-show="portlet.listExists">
             <!--BEGIN TABS-->
