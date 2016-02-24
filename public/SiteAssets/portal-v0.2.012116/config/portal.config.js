@@ -1,4 +1,5 @@
-﻿
+
+/* add subsite name here e.g. subsite/SiteAssets/... */
 var rootUrl = '/SiteAssets/portal-v0.2.012116';
 
 LegalPortal.constant('BASE_PATH', {
@@ -22,7 +23,7 @@ LegalPortal.constant('PORTLET', {
 });
 
 LegalPortal.constant('DOCUMENT_LIBRARY', {
-    NAME: 'Shared Documents',
+    NAME: 'Documents',
     QUERYNAME: 'Documents'
 });
 
