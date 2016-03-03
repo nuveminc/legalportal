@@ -1,29 +1,29 @@
 ﻿**SharePoint LegalPortal** (beta)
 ===========================
 
-LegalPortal is a SharePoint-based application that utilizes SharePoint (SP) as 
-the base platform for an intranet portal. The current release is in beta and 
-requires some initial configuration which is described in the [Set-Up](#set-up) section 
+LegalPortal is a SharePoint-based application that utilizes SharePoint (SP) as
+the base platform for an intranet portal. The current release is in beta and
+requires some initial configuration which is described in the [Set-Up](#set-up) section
 below.
 
-This project is the result of a number of portal projects developed for various 
-Legal Services organizations and provides basic features that were common through 
+This project is the result of a number of portal projects developed for various
+Legal Services organizations and provides basic features that were common through
 all projects.
 
-The portal application adds a simpler and more intuitive User Experience (UX) to 
-the out-of-the-box User Interface (UI) provided by SharePoint and was developed as 
-a modular application framework to allow extensible "portlets" to be developed and 
-added to the core set of features. 
+The portal application adds a simpler and more intuitive User Experience (UX) to
+the out-of-the-box User Interface (UI) provided by SharePoint and was developed as
+a modular application framework to allow extensible "portlets" to be developed and
+added to the core set of features.
 
 SharePoint Version Support
 ---------------
-This beta version supports both SharePoint 2013 On-Premises and SharePoint Online 
+This beta version supports both SharePoint 2013 On-Premises and SharePoint Online
 (Office 365). The **Set-Up** section below is the same for both hosted versions.
- 
+
 
 Application Architecture
 ---------------
-The portal architecture consists of SharePoint as the platform to provide core 
+The portal architecture consists of SharePoint as the platform to provide core
 services consisting of the following:
 
 - Authentication
@@ -31,9 +31,9 @@ services consisting of the following:
 - Data storage (Lists, Libraries)
 - Feature support (Blogs, Team Sites, Wikis)
 
-The application architecture leverages several frameworks in addition to SharePoint. 
-The additional frameworks make up the "Presentation" layer which is defined as the 
-custom User Interface (UI) elements that augment the native SharePoint UI. 
+The application architecture leverages several frameworks in addition to SharePoint.
+The additional frameworks make up the "Presentation" layer which is defined as the
+custom User Interface (UI) elements that augment the native SharePoint UI.
 Technology frameworks used are:
 
 - jQuery
@@ -43,13 +43,13 @@ Technology frameworks used are:
 
 Application Design
 --------
-Open source framework technologies are used with SharePoint in a novel way. 
-Rather than implementing the custom interfaces as master pages and web parts 
-deployed in custom solution packages, the framework is deployed as files to a 
-SharePoint library. The code files (JavaScript)  are stored in standard SharePoint 
-libraries (Site Assets) and the main entry page "LegalPortal.aspx" is stored in the Site Pages 
-library as a basic Wiki page. By simplifying the deployment and file management, 
-development is more rapid and deployments can be made to either SP 
+Open source framework technologies are used with SharePoint in a novel way.
+Rather than implementing the custom interfaces as master pages and web parts
+deployed in custom solution packages, the framework is deployed as files to a
+SharePoint library. The code files (JavaScript)  are stored in standard SharePoint
+libraries (Site Assets) and the main entry page "LegalPortal.aspx" is stored in the Site Pages
+library as a basic Wiki page. By simplifying the deployment and file management,
+development is more rapid and deployments can be made to either SP
 on-premise or Office 365 (SharePoint Online).
 
 ---------
@@ -58,14 +58,14 @@ LegalPortal Features (Portlets)
 ------------
 Portlets refer to the functional areas of the page - think of portlets as
 the new "web parts". Portlets are, in reality, AngularJS Directives, so if
-you want to extend the framework with new views of data, you can create a 
+you want to extend the framework with new views of data, you can create a
 new directive or modify or extend an existing one and place it in the view.
 
 - Weather: displays weather for your local area
 - Blog: displays blog entries stored in your blog site
 - Events: displays events
 - Discussion Boards
-- Twitter Feed 
+- Twitter Feed
 - Document Library View
 - Practice Areas Views
 - Search (integration with native FAST)
@@ -78,7 +78,7 @@ You can either clone the files from this repo or download the files as a zip fil
 Once you have the files, you will need to perform some SP configuration.
 The easiest way to play with this beta is to create a new Site Collection since you will need to create a Blog sub-site and a few lists and libraries to support the application. You can use an existing site, but be aware you will be creating new lists and libraries.
 
->**Note:** create the list or library specified with no spaces in the name. 
+>**Note:** create the list or library specified with no spaces in the name.
 You can change the display name by changing the name **after** you have created the list.
 
 >Also note that [root] refers to the "Site Collection" you are using
@@ -86,7 +86,7 @@ You can change the display name by changing the name **after** you have created 
 > The "portal" folder referenced below refers to the current versioned folder
 that is in the repo (e.g. portal-v0.2.012116)  
 
- 1. Copy the entire file folder (portal) into [root]/SiteAssets in SP ([root]/SiteAssets/portal-v0.2.012116) 
+ 1. Copy the entire file folder (portal) into [root]/SiteAssets in SP ([root]/SiteAssets/portal-v0.2.012116)
  2. Copy the file LegalPortal.aspx into [root]/Site Pages in SP ([root]/Site Pages/LegalPortal.aspx)
  3. Create a Blog sub-site named "Blog" ([root]/Blog)
  4. Create a new Calendar list named "Events" ([root]/Events)
@@ -118,7 +118,7 @@ LegalPortal.constant('BASE_PATH', {
 });
 ```
 
-Update the below values to change the Weather and Twitter Portlets 
+Update the below values to change the Weather and Twitter Portlets
 ```
 LegalPortal.constant('PORTLET', {
     weatherCity: 'Seattle',
@@ -126,8 +126,36 @@ LegalPortal.constant('PORTLET', {
     twitterId: '685274550158753792'
 });
 ```
+The values above are:
+ - weatherCity: enter the city you wish to display
+ - twitterAt: enter the name of the account (this is only for displaying while the
+   tweets are loading)
+ - twitterId: the ID of your twitter account - see the 'Twitter Widget Configuration'
+ section below.
 
-Update the below values to point to your Termstore
+
+ ***Twitter Widget Confugration***
+
+ Log into your Twitter account and use this link to the [Twitter Widget](https://twitter.com/settings/widgets/new) creator to view your Twitter Id.
+ Click the 'Create Widget' button and copy the value from the "data-widget-id" from
+  the HTML that is displayed.
+ It will look something like this:
+
+
+ ```
+ data-widget-id="705463983336087552"
+ ```
+
+***Term Store Configuration***
+
+Update the below values to point to your Termstore. These values can be found in the Term Store.
+
+From 'Site Settings', click the Term store management link. Click on the site collection
+node to select. On the 'General' pane to the right, at the bottom is the 'Unique Identifier'.
+This is the value you will use for 'GUID' below. Each termset will also have a 'Unique Identifier'.
+Select each Term Set and copy the 'Term Set Name' and the 'Unique Identifier' for the 'TERMSETS'
+section below.
+
 
 ```
 Portal.constant('TERMSTORE', {
@@ -163,7 +191,7 @@ To create this list:
  - Click the page button at the bottom to find "Workgroup-Template"
  - Name: "Workgroups"
  - Click "Create"
- 
+
 Alternatively, you can create the "Workgroups" custom list.
  - Click "Site Contents"
  - Click "add an app"
@@ -184,4 +212,3 @@ Alternatively, you can create the "Workgroups" custom list.
 
 
  > **Note: Please note no spaces in the column names.
- 
