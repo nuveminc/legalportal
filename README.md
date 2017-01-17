@@ -1,10 +1,21 @@
-﻿**SharePoint LegalPortal** (beta)
-===========================
+<h1>
+<img alt="LegalPortal logo" src="http://nuveminc.com/img/lp-logo.png" title="LegalPortal"/>
+</h1>
+
+## SharePoint LegalPortal (beta)
 
 LegalPortal is a SharePoint-based application that utilizes SharePoint (SP) as
 the base platform for an intranet portal. The current release is in beta and
-requires some initial configuration which is described in the [Set-Up](#set-up) section
+requires some initial configuration which is described in the [Installation](#installation) section
 below.
+
+This portal application uses a completely novel approach pioneeered by Nuvem Principal Consultant, Mark Pace, utilizes a SharePoint (SP) Wiki page to host an Angular-based Single Page Application (SPA to accelerate development time reducing costs dramatically. No more installing and retracting while developing the solution. The entire app can be deployed as easily as dragging and dropping files via SharePoint Designer or the SharePoint native UI. Updating the app is as simple as copying files to an existing document library (Site Assets).
+
+**Benefits:**
+ - Greatly reduces development hell of installing and retracting solutions. No more artifacts!
+ - Completely portable. Can be deployed to either on-prem or to the cloud with no changes.
+ - Complete separation of concerns. Presentation and server are completely decoupled.
+ - Uses SharePoint as an application platform which includes Role-based access and API security out of the box, native list and library interfaces make administration of the portal simple and easy.
 
 This project is the result of a number of portal projects developed for various
 Legal Services organizations and provides basic features that were common through
@@ -15,67 +26,16 @@ the out-of-the-box User Interface (UI) provided by SharePoint and was developed 
 a modular application framework to allow extensible "portlets" to be developed and
 added to the core set of features.
 
-SharePoint Version Support
----------------
-This beta version supports both SharePoint 2013 On-Premises and SharePoint Online
-(Office 365). The **Set-Up** section below is the same for both hosted versions.
+## Legal Portal Out of the Box
+<img alt="LegalPortal logo" src="http://nuveminc.com/img/lp-dashboard.png" title="LegalPortal"/>
 
+## Legal Portal Customized for LAF
+<img alt="LAF LegalPortal logo" src="http://nuveminc.com/img/lp-laf-dashboard.png" title="LAF LegalPortal"/>
 
-Application Architecture
----------------
-The portal architecture consists of SharePoint as the platform to provide core
-services consisting of the following:
-
-- Authentication
-- Authorization
-- Data storage (Lists, Libraries)
-- Feature support (Blogs, Team Sites, Wikis)
-
-The application architecture leverages several frameworks in addition to SharePoint.
-The additional frameworks make up the "Presentation" layer which is defined as the
-custom User Interface (UI) elements that augment the native SharePoint UI.
-Technology frameworks used are:
-
-- jQuery
-- moment.js
-- AngularJS
-- Twitter Bootstrap
-
-Application Design
---------
-Open source framework technologies are used with SharePoint in a novel way.
-Rather than implementing the custom interfaces as master pages and web parts
-deployed in custom solution packages, the framework is deployed as files to a
-SharePoint library. The code files (JavaScript)  are stored in standard SharePoint
-libraries (Site Assets) and the main entry page "LegalPortal.aspx" is stored in the Site Pages
-library as a basic Wiki page. By simplifying the deployment and file management,
-development is more rapid and deployments can be made to either SP
-on-premise or Office 365 (SharePoint Online).
-
----------
-
-LegalPortal Features (Portlets)
-------------
-Portlets refer to the functional areas of the page - think of portlets as
-the new "web parts". Portlets are, in reality, AngularJS Directives, so if
-you want to extend the framework with new views of data, you can create a
-new directive or modify or extend an existing one and place it in the view.
-
-- Weather: displays weather for your local area
-- Blog: displays blog entries stored in your blog site
-- Events: displays events
-- Discussion Boards
-- Twitter Feed
-- Document Library View
-- Practice Areas Views
-- Search (integration with native FAST)
-
-----------
-
-Set-up
---------
+## Installation
 You can either clone the files from this repo or download the files as a zip file.
-Once you have the files, you will need to perform some SP configuration.
+Once you have the files, you will need to perform some SP configuration. Since a solution package has not been developed yet.
+
 The easiest way to play with this beta is to create a new Site Collection since you will need to create a Blog sub-site and a few lists and libraries to support the application. You can use an existing site, but be aware you will be creating new lists and libraries.
 
 >**Note:** create the list or library specified with no spaces in the name.
@@ -212,3 +172,58 @@ Alternatively, you can create the "Workgroups" custom list.
 
 
  > **Note: Please note no spaces in the column names.
+
+SharePoint Version Support
+---------------
+This beta version supports both SharePoint 2013 On-Premises and SharePoint Online
+(Office 365). The **Set-Up** section below is the same for both hosted versions.
+
+
+Application Architecture
+---------------
+The portal architecture consists of SharePoint as the platform to provide core
+services consisting of the following:
+
+- Authentication
+- Authorization
+- Data storage (Lists, Libraries)
+- Feature support (Blogs, Team Sites, Wikis)
+
+The application architecture leverages several frameworks in addition to SharePoint.
+The additional frameworks make up the "Presentation" layer which is defined as the
+custom User Interface (UI) elements that augment the native SharePoint UI.
+Technology frameworks used are:
+
+- jQuery
+- moment.js
+- AngularJS
+- Twitter Bootstrap
+
+Application Design
+--------
+Open source framework technologies are used with SharePoint in a novel way.
+Rather than implementing the custom interfaces as master pages and web parts
+deployed in custom solution packages, the framework is deployed as files to a
+SharePoint library. The code files (JavaScript)  are stored in standard SharePoint
+libraries (Site Assets) and the main entry page "LegalPortal.aspx" is stored in the Site Pages
+library as a basic Wiki page. By simplifying the deployment and file management,
+development is more rapid and deployments can be made to either SP
+on-premise or Office 365 (SharePoint Online).
+
+---------
+
+LegalPortal Features (Portlets)
+------------
+Portlets refer to the functional areas of the page - think of portlets as
+the new "web parts". Portlets are, in reality, AngularJS Directives, so if
+you want to extend the framework with new views of data, you can create a
+new directive or modify or extend an existing one and place it in the view.
+
+- Weather: displays weather for your local area
+- Blog: displays blog entries stored in your blog site
+- Events: displays events
+- Discussion Boards
+- Twitter Feed
+- Document Library View
+- Practice Areas Views
+- Search (integration with native FAST)
