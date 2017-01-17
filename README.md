@@ -9,16 +9,19 @@ the base platform for an intranet portal. The current release is in beta and
 requires some initial configuration which is described in the [Installation](#installation) section
 below.
 
-This portal application uses a completely novel approach pioneeered by Nuvem Principal Consultant, Mark Pace, utilizes a SharePoint (SP) Wiki page to host an Angular-based Single Page Application (SPA to accelerate development time reducing costs dramatically. No more installing and retracting while developing the solution. The entire app can be deployed as easily as dragging and dropping files via SharePoint Designer or the SharePoint native UI. Updating the app is as simple as copying files to an existing document library (Site Assets).
+This portal application implements a completely novel approach pioneeered by Nuvem Principal Consultant, Mark Pace. The LegalPortal framework utilizes a SharePoint (SP) Wiki page to host an Angular-based Single Page Application (SPA) to accelerate development time reducing costs dramatically. No more installing and retracting while developing a solution. The entire app can be deployed as easily as dragging and dropping files via SharePoint Designer or the SharePoint native UI. Updating the app is as simple as copying files to an existing document library (SiteAssets).
 
-**Benefits:**
- - Greatly reduces development hell of installing and retracting solutions. No more artifacts!
- - Completely portable. Can be deployed to either on-prem or to the cloud with no changes.
+**Developer Benefits:**
+ - Greatly reduces development hell of installing and retracting solutions. No more artifacts! No more XML!
+ - Completely portable. Can be deployed to either on-prem or to the cloud with no changes to your code.
+ - Uses native SharePoint REST API's with an easy to use custom JavaScript data provider. Simplifying development and data access.
  - Complete separation of concerns. Presentation and server are completely decoupled.
  - Uses SharePoint as an application platform which includes Role-based access and API security out of the box, native list and library interfaces make administration of the portal simple and easy.
+ - Totally customizable and extendable.
+ - Open Source MIT licensing.
 
 This project is the result of a number of portal projects developed for various
-Legal Services organizations and provides basic features that were common through
+Legal Services organizations around the country and provides basic features that were common through
 all projects.
 
 The portal application adds a simpler and more intuitive User Experience (UX) to
